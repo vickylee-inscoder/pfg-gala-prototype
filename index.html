@@ -14,7 +14,7 @@
 }
 
 /* ---- colour tones (prototype switcher) ---- */
-:root,:root[data-tone="bluehour"]{
+:root[data-tone="bluehour"]{
   --sk0:#0f4a86;--sk1:#5b8cc2;--sk2:#f2b886;--sk3:#fde2c6;--sun0:#fff5ee;--sun1:#f6b06e;--sun2:#ed8023;
   --far0:#9fbbdb;--far1:#f3e2d2;--bk0:#f4f1f0;--bk1:#8fb0d4;--pk1:#fff0e3;--pk2:#b9cde6;--pk3:#3f73ab;
   --pp0:#fffaf6;--pp1:#fbeadc;--pp2:#aac2e0;--pp3:#33669e;--sh:#0c3d70;--mc:#fff5ee;--hl0:#e3cfbb;--hl1:#f7ece2;--h20:#efe1d3;
@@ -28,7 +28,7 @@
   --mist:#fff5ee;--pg1:#fdeee2;--pg2:#f3e9e0;--w1:#f6b880;--w2:#f8d6b5;--w3:#c3d4ea;--sky:#e39a64;
   --hero-ink:#ffffff;--hero-eb:#ffffff;--hero-shadow:0 1px 14px rgba(70,30,10,.38);--eb-shadow:0 1px 2px rgba(60,25,5,.55),0 0 12px rgba(60,25,5,.35);--pole:#fff5ee;--logo-fx:drop-shadow(0 0 1.5px #fff5ee) drop-shadow(0 0 6px rgba(255,245,238,.85));
 }
-:root[data-tone="daylight"]{
+:root,:root[data-tone="daylight"]{
   --sk0:#7fa8d6;--sk1:#c9dcf0;--sk2:#f6ebe4;--sk3:#fff5ee;--sun0:#ffffff;--sun1:#fde3c8;--sun2:#f6c08c;
   --far0:#d3e1f0;--far1:#f3e9e0;--bk0:#f7f7f8;--bk1:#a9c3e0;--pk1:#f6f1ee;--pk2:#c2d5ea;--pk3:#4f7fb4;
   --pp0:#fdfdfd;--pp1:#efeae7;--pp2:#b4cae3;--pp3:#3f72aa;--sh:#145ca2;--mc:#fff5ee;--hl0:#e6d6c5;--hl1:#f7eee6;--h20:#efe3d7;
@@ -37,9 +37,9 @@
 }
 
 /* ---- card colour sets (prototype switcher) ---- */
-:root,:root[data-cards="jewel"]{--c-v:#1f4a8a;--c-b:#5b3d87;--c-c:#8e2c48;--c-g:#7d5a22}
+:root[data-cards="jewel"]{--c-v:#1f4a8a;--c-b:#5b3d87;--c-c:#8e2c48;--c-g:#7d5a22}
 :root[data-cards="metals"]{--c-v:#8a6a12;--c-b:#9b4f49;--c-c:#56637a;--c-g:#7f4320}
-:root[data-cards="brand"]{--c-v:#0f3f73;--c-b:#2f72b8;--c-c:#c4620f;--c-g:#7a4a1c}
+:root,:root[data-cards="brand"]{--c-v:#0f3f73;--c-b:#2f72b8;--c-c:#c4620f;--c-g:#7a4a1c}
 
 /* ---- amount font (prototype switcher) ---- */
 :root,:root[data-num="figtree"]{--num-font:Figtree,system-ui,sans-serif;--num-w:800;--num-ls:-.02em}
@@ -249,9 +249,6 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
 
   <!-- GIVE -->
   <main id="give">
-    <div class="tonebar" role="group" aria-label="Prototype colour tone"><span>Brand tone</span><div class="seg"><button type="button" data-tone="bluehour">Blue hour</button><button type="button" data-tone="sunset">Sunset</button><button type="button" data-tone="daylight">Daylight</button></div></div>
-    <div class="tonebar" role="group" aria-label="Prototype card colours" style="padding-top:0"><span>Card colours</span><div class="seg"><button type="button" data-cards="jewel">Jewel</button><button type="button" data-cards="metals">Metals</button><button type="button" data-cards="brand">PfG brand</button></div></div>
-    <div class="tonebar" role="group" aria-label="Prototype amount font" style="padding-top:0"><span>Amount font</span><div class="seg"><button type="button" data-num="figtree">Figtree</button><button type="button" data-num="manrope">Manrope</button><button type="button" data-num="sora">Sora</button><button type="button" data-num="serif">Serif</button></div></div>
     <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
     <div class="gut">
       <section class="stats glass" aria-label="Raised tonight">
@@ -462,14 +459,14 @@ function climbTo(sc,to,ms,base,mine,onTick){
 /* ---------- colour tone switcher (prototype) ---------- */
 function setTone(t){document.documentElement.setAttribute('data-tone',t);document.querySelectorAll('[data-tone]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.tone===t)});syncHash()}
 function setCards(c){document.documentElement.setAttribute('data-cards',c);document.querySelectorAll('button[data-cards]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cards===c)});syncHash()}
-function syncHash(){var d=document.documentElement;try{history.replaceState(null,'','#tone='+d.getAttribute('data-tone')+'&cards='+(d.getAttribute('data-cards')||'jewel')+'&num='+(d.getAttribute('data-num')||'figtree'))}catch(e){}}
+function syncHash(){return;var d=document.documentElement;try{history.replaceState(null,'','#tone='+d.getAttribute('data-tone')+'&cards='+(d.getAttribute('data-cards')||'jewel')+'&num='+(d.getAttribute('data-num')||'figtree'))}catch(e){}}
 function setNum(n){document.documentElement.setAttribute('data-num',n);document.querySelectorAll('button[data-num]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.num===n)});syncHash()}
 document.querySelectorAll('button[data-num]').forEach(function(b){b.addEventListener('click',function(){setNum(b.dataset.num)})});
 document.querySelectorAll('button[data-tone]').forEach(function(b){b.addEventListener('click',function(){setTone(b.dataset.tone)})});
 document.querySelectorAll('button[data-cards]').forEach(function(b){b.addEventListener('click',function(){setCards(b.dataset.cards)})});
-var h0=location.hash,c0=(h0.match(/cards=(\w+)/)||[])[1]||'jewel';
+var h0=location.hash,c0=(h0.match(/cards=(\w+)/)||[])[1]||'brand';
 document.documentElement.setAttribute('data-cards',c0);var n0=(h0.match(/num=(\w+)/)||[])[1]||'figtree';document.documentElement.setAttribute('data-num',n0);
-setTone((h0.match(/tone=(\w+)/)||[])[1]||'bluehour');setCards(c0);setNum(n0);
+setTone((h0.match(/tone=(\w+)/)||[])[1]||'daylight');setCards(c0);setNum(n0);
 
 /* ---------- give screen ---------- */
 var s1=makeScene($('hero1'),'a');
