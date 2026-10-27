@@ -35,9 +35,14 @@
   --mist:#fff5ee;--pg1:#fbf1e8;--pg2:#f3e9e0;--w1:#f8cfa8;--w2:#efe0cf;--w3:#bfd3ec;--sky:#9fbfe2;
   --hero-ink:#0f3f73;--hero-eb:#c4620f;--hero-shadow:none;--pole:#0f3f73;--logo-fx:none;
 }
+
+/* ---- card colour sets (prototype switcher) ---- */
+:root,:root[data-cards="jewel"]{--c-v:#1f4a8a;--c-b:#5b3d87;--c-c:#8e2c48;--c-g:#7d5a22}
+:root[data-cards="metals"]{--c-v:#8a6a12;--c-b:#9b4f49;--c-c:#56637a;--c-g:#7f4320}
+:root[data-cards="brand"]{--c-v:#0f3f73;--c-b:#2f72b8;--c-c:#c4620f;--c-g:#7a4a1c}
 .hero-copy h2{color:var(--hero-ink);text-shadow:var(--hero-shadow)}
 .hero-copy .eyebrow{color:var(--hero-eb)!important;text-shadow:var(--hero-shadow)}
-.tonebar{position:sticky;top:0;z-index:25;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:700}
+.tonebar{position:relative;z-index:25;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:700}
 .tonebar span{opacity:.75;white-space:nowrap}
 .tonebar .seg{display:flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
 .tonebar button{border:0;border-radius:999px;padding:6px 10px;background:transparent;color:#fff;font:700 12px var(--sans);cursor:pointer;white-space:nowrap}
@@ -235,6 +240,7 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
   <!-- GIVE -->
   <main id="give">
     <div class="tonebar" role="group" aria-label="Prototype colour tone"><span>Brand tone</span><div class="seg"><button type="button" data-tone="bluehour">Blue hour</button><button type="button" data-tone="sunset">Sunset</button><button type="button" data-tone="daylight">Daylight</button></div></div>
+    <div class="tonebar" role="group" aria-label="Prototype card colours" style="padding-top:0"><span>Card colours</span><div class="seg"><button type="button" data-cards="jewel">Jewel</button><button type="button" data-cards="metals">Metals</button><button type="button" data-cards="brand">PfG brand</button></div></div>
     <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
     <div class="gut">
       <section class="stats glass" aria-label="Raised tonight">
@@ -443,9 +449,14 @@ function climbTo(sc,to,ms,base,mine,onTick){
 }
 
 /* ---------- colour tone switcher (prototype) ---------- */
-function setTone(t){document.documentElement.setAttribute('data-tone',t);document.querySelectorAll('[data-tone]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.tone===t)});try{history.replaceState(null,'','#tone='+t)}catch(e){}}
-document.querySelectorAll('.tonebar button').forEach(function(b){b.addEventListener('click',function(){setTone(b.dataset.tone)})});
-setTone((location.hash.match(/tone=(\w+)/)||[])[1]||'bluehour');
+function setTone(t){document.documentElement.setAttribute('data-tone',t);document.querySelectorAll('[data-tone]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.tone===t)});syncHash()}
+function setCards(c){document.documentElement.setAttribute('data-cards',c);document.querySelectorAll('button[data-cards]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cards===c)});syncHash()}
+function syncHash(){try{history.replaceState(null,'','#tone='+document.documentElement.getAttribute('data-tone')+'&cards='+(document.documentElement.getAttribute('data-cards')||'jewel'))}catch(e){}}
+document.querySelectorAll('button[data-tone]').forEach(function(b){b.addEventListener('click',function(){setTone(b.dataset.tone)})});
+document.querySelectorAll('button[data-cards]').forEach(function(b){b.addEventListener('click',function(){setCards(b.dataset.cards)})});
+var h0=location.hash,c0=(h0.match(/cards=(\w+)/)||[])[1]||'jewel';
+document.documentElement.setAttribute('data-cards',c0);
+setTone((h0.match(/tone=(\w+)/)||[])[1]||'bluehour');setCards(c0);
 
 /* ---------- give screen ---------- */
 var s1=makeScene($('hero1'),'a');
@@ -454,7 +465,7 @@ $('hero1').insertAdjacentHTML('beforeend','<div class="topbar"><span class="pill
 var gHtml='';
 GIFTS.forEach(function(g,i){
   var pc=Math.round(g.amt/GOAL*1000)/10;
-  gHtml+='<div class="gift-wrap" style="animation-delay:'+(450+i*90)+'ms"><button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:'+g.t+'">'+
+  gHtml+='<div class="gift-wrap" style="animation-delay:'+(450+i*90)+'ms"><button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+')">'+
   '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+(g.top?'<span class="tag">Greatest impact</span>':'')+'</span>'+
   '<span class="gbody"><span class="amt"><span class="cur">HK$</span>'+fmt(g.amt)+'</span>'+
   '<span class="bottom"><span class="impact">'+g.impact+'</span>'+
@@ -519,7 +530,7 @@ var feedT=setInterval(function(){
 document.querySelectorAll('[data-word]').forEach(function(i){i.src=WORD});
 var money=function(n){return 'HK$'+fmt(n)+'.00'};
 function summaryHtml(){
-  var h='';GIFTS.forEach(function(g){if(sel[g.id])h+='<div class="sh-line"><span class="sh-thumb" style="background:'+g.medal+'"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+g.stroke+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg><i>1</i></span><span class="sh-ln"><b style="font-weight:600">'+g.name+'</b><small>Charity Gala gift</small></span><span>'+money(g.amt)+'</span></div>'});
+  var h='';GIFTS.forEach(function(g){if(sel[g.id])h+='<div class="sh-line"><span class="sh-thumb" style="background:var(--c-'+g.id+')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+g.stroke+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg><i>1</i></span><span class="sh-ln"><b style="font-weight:600">'+g.name+'</b><small>Charity Gala gift</small></span><span>'+money(g.amt)+'</span></div>'});
   h+='<div class="sh-tot"><span>Subtotal</span><span>'+money(total())+'</span></div><div class="sh-tot big"><span>Total</span><span><small>HKD</small>'+money(total())+'</span></div>';
   return h;
 }
