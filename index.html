@@ -120,11 +120,13 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
 .gift[aria-pressed="true"] .gico{transform:rotate(-8deg) scale(1.08)}
 .gname{font-size:17px;line-height:22px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .tag{margin-left:auto;font-size:12px;line-height:16px;font-weight:800;letter-spacing:0;text-transform:none;color:#4a3410;background:#f6d48b;padding:4px 10px;border-radius:999px;white-space:nowrap}
-.gbody{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-items:center;width:100%;padding:12px 16px}
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-items:center;width:100%;padding:13px 16px 13px}
 .ginfo{display:flex;flex-direction:column;gap:2px;min-width:0;container-type:inline-size}
 .ginfo .amt{font-size:min(38px,19cqi)}
-.amt{font-family:var(--num-font);font-weight:var(--num-w);font-size:38px;line-height:42px;color:var(--t);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums;letter-spacing:var(--num-ls)}
-.cur{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--t);opacity:.8;margin-right:4px;vertical-align:16px}
+.amt{font-family:var(--num-font);font-weight:var(--num-w);font-size:38px;line-height:1;color:var(--t);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums;letter-spacing:var(--num-ls)}
+.cur{font-family:var(--sans);font-size:16px;line-height:1;font-weight:800;color:var(--t);opacity:.8;margin-right:4px}
+.ginfo .amt{display:flex;align-items:flex-start}
+.ginfo .cur{margin-top:.28em}
 .hk{font-family:var(--sans);font-size:.5em;font-weight:700;letter-spacing:.02em;margin-right:.14em;vertical-align:.62em;opacity:.78}
 .impact{font-size:15px;line-height:21px;color:var(--ink-soft);font-weight:600}
 .add{position:relative;flex:none;height:44px;min-width:112px;padding:0 16px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:800;background:var(--peach);color:var(--orange-ink);box-shadow:inset 0 0 0 1.5px var(--peach-line);transition:background .25s,color .25s,box-shadow .25s}
