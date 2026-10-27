@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..800&family=Figtree:wght@400..800&display=swap">
 <style>
-/* Layout: one phone-width column — mountain hero band, frosted stats panel overlapping it, frosted gift cards, frosted sticky give bar; payment as a bottom sheet; thank-you reuses the scene. Single committed pastel look. */
+/* Layout: one phone-width column — mountain hero band, frosted stats panel overlapping it, frosted gift cards, frosted sticky give bar; checkout hands off to Shopify's native checkout (simulated); thank-you is Shopify's native page with one custom extension block. Single committed pastel look. */
 :root{
   --sky:#bcd2e4; --mist:#eef2ef; --ink:#1c2733; --ink-soft:#4f4a45; --muted:#5b5048;
   --blue:#145ca2; --blue-deep:#2b4a66; --orange:#ed8023; --orange-ink:#a84f0a; --peach:#fff1e4; --peach-line:#f3c79f;
@@ -102,40 +102,78 @@ h1.choose{margin:0;padding:26px 0 14px;font-family:var(--display);font-weight:70
 .give.in{animation:up .45s cubic-bezier(.2,.8,.2,1) both}
 .give-off{display:flex;align-items:center;justify-content:center;height:60px;border-radius:18px;background:rgba(255,255,255,.6);box-shadow:inset 0 0 0 1.5px rgba(91,80,72,.22);color:var(--ink-soft);font-size:16px;font-weight:700}
 
-/* payment sheet */
-.scrim{position:fixed;inset:0;z-index:30;background:rgba(28,39,51,.32);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:fade .25s both}
-.sheet{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:430px;z-index:31;border-radius:28px 28px 0 0;background:rgba(250,251,250,.92);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-shadow:0 -12px 40px rgba(28,39,51,.18);padding:10px max(20px,env(safe-area-inset-right,0px)) calc(22px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px;animation:sheet .45s cubic-bezier(.2,.8,.2,1) both;max-height:92%;overflow-y:auto}
-.grab{width:44px;height:5px;border-radius:999px;background:rgba(28,39,51,.18);margin:0 auto}
-.sheet h3{margin:0;font-family:var(--display);font-weight:700;font-size:24px;line-height:30px}
-.sum{display:flex;flex-direction:column;border-radius:18px;background:rgba(255,255,255,.8);box-shadow:inset 0 0 0 1px rgba(28,39,51,.06);padding:4px 16px}
-.sum div{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(28,39,51,.07);font-size:15px}
-.sum div:last-child{border-bottom:0;font-weight:800}
-.sum .v{font-family:var(--display);font-weight:700;font-size:18px} .sum div:last-child .v{font-size:24px}
-.paybtn{width:100%;border:0;cursor:pointer;height:56px;border-radius:16px;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px}
-.paybtn.apple{background:#000;color:#fff}
-.paybtn.google{background:#fff;color:#000;box-shadow:inset 0 0 0 1.5px #000}
-.paybtn.card{background:transparent;color:var(--blue);height:44px;font-size:15px;text-decoration:underline;text-underline-offset:4px}
-.paybtn:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.cardform{display:flex;flex-direction:column;gap:12px}
-.cardform label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:700}
-.cardform input{height:50px;border-radius:12px;border:1px solid #8a7f74;background:#fff;padding:0 14px;font:600 16px var(--sans);color:var(--ink)}
-.cardform input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(20,92,162,.2)}
-.cardform .two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.paybtn.go{background:var(--blue);color:#fff}
-.note{margin:0;font-size:12px;line-height:18px;color:var(--muted);text-align:center}
-.proc{display:flex;flex-direction:column;align-items:center;gap:14px;padding:30px 0 20px}
-.spin{width:46px;height:46px;border-radius:999px;border:4px solid rgba(20,92,162,.15);border-top-color:var(--blue);animation:spin .8s linear infinite}
-
-/* thank you */
-.thanks-card{position:relative;margin:-64px 0 0;padding:22px 20px;border-radius:24px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;z-index:6;animation:rise .7s .2s cubic-bezier(.2,.8,.2,1) both}
-.okring{width:56px;height:56px;border-radius:999px;background:var(--ok);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(46,125,79,.15);animation:pop .6s .4s cubic-bezier(.34,1.56,.64,1) both}
-.thanks-card h2{margin:4px 0 0;font-family:var(--display);font-weight:700;font-size:30px;line-height:36px}
-.thanks-card p{margin:0;font-size:15px;line-height:22px;color:var(--ink-soft)}
-.does{display:flex;flex-direction:column;gap:10px}
-.does .item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px}
-.does .item b{font-weight:800}
-.secondary{width:100%;border:0;cursor:pointer;height:54px;border-radius:16px;background:rgba(255,255,255,.7);box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--blue);font-size:16px;font-weight:800}
-.secondary:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+/* ---- Shopify native checkout + thank-you (simulated) ---- */
+.app.shopmode{background:#fff;padding-bottom:0}
+.shop{--sb:#145ca2;--sbh:#0f4a85;--sl:#dedede;--st:#1a1a1a;--sm:#6b6b6b;--sbg:#f5f5f5;background:#fff;color:var(--st);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.45;min-height:100vh}
+.shop h1,.shop h2,.shop h3{margin:0;font-weight:600;color:var(--st)}
+.shop h2{font-size:19px;line-height:1.3}
+.sh-proto{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:600}
+.sh-proto span{opacity:.8}
+.sh-back{border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:6px 12px;font:600 12px var(--sans);cursor:pointer;white-space:nowrap}
+.sh-head{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 14px;border-bottom:1px solid var(--sl)}
+.sh-head img{height:32px;width:auto;display:block}
+.sh-sumbar{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;background:var(--sbg);border:0;border-bottom:1px solid var(--sl);cursor:pointer;font:inherit;color:var(--st);text-align:left}
+.sh-sumbar>span{display:flex;align-items:center;gap:6px;color:var(--sb);font-size:14px}
+.sh-sumbar svg{transition:transform .2s}.sh-sumbar[aria-expanded="true"] svg{transform:rotate(180deg)}
+.sh-sumbar b{font-size:17px;font-weight:600}
+.sh-sum{background:var(--sbg);border-bottom:1px solid var(--sl);padding:4px 16px 18px;display:flex;flex-direction:column;gap:14px}
+.sh-line{display:flex;align-items:center;gap:14px}
+.sh-thumb{position:relative;flex:none;width:64px;height:64px;border-radius:8px;border:1px solid var(--sl);display:flex;align-items:center;justify-content:center}
+.sh-thumb i{position:absolute;top:-8px;right:-8px;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#666;color:#fff;font:600 12px/21px -apple-system,sans-serif;font-style:normal;text-align:center}
+.sh-ln{flex:1;min-width:0;display:flex;flex-direction:column}
+.sh-ln small{color:var(--sm);font-size:13px}
+.sh-tot{display:flex;justify-content:space-between;align-items:baseline}
+.sh-tot.big{font-size:19px;font-weight:600}.sh-tot.big small{font-size:12px;font-weight:400;color:var(--sm);margin-right:4px}
+.sh-body{padding:20px 16px 28px;display:flex;flex-direction:column;gap:26px}
+.sh-cap{margin:0 0 10px;text-align:center;color:var(--sm);font-size:14px}
+.sh-exp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sh-xbtn{height:50px;border:0;border-radius:5px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:4px;font:600 18px -apple-system,sans-serif;cursor:pointer}
+.sh-or{display:flex;align-items:center;gap:12px;color:var(--sm);font-size:13px;margin:-6px 0}
+.sh-or::before,.sh-or::after{content:"";flex:1;height:1px;background:var(--sl)}
+.sh-sec{display:flex;flex-direction:column;gap:12px}
+.sh-h2row{display:flex;justify-content:space-between;align-items:baseline}
+.sh-h2row a,.sh-link{color:var(--sb);text-decoration:underline;text-underline-offset:3px;font-size:14px}
+.sh-sub{margin:-6px 0 0;color:var(--sm)}
+.sh-in{width:100%;height:50px;border:1px solid var(--sl);border-radius:5px;padding:0 12px;font:16px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--st);background:#fff}
+.sh-in:focus{outline:none;border-color:var(--sb);box-shadow:0 0 0 1px var(--sb)}
+.sh-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sh-check{display:flex;align-items:center;gap:10px;color:var(--st)}
+.sh-check input{width:18px;height:18px;accent-color:var(--sb)}
+.sh-pay{border:1px solid var(--sb);border-radius:5px;overflow:hidden}
+.sh-payhead{display:flex;align-items:center;gap:10px;padding:14px;background:#f0f5fb;border-bottom:1px solid var(--sl)}
+.sh-radio{width:18px;height:18px;border-radius:999px;box-shadow:inset 0 0 0 6px var(--sb);flex:none}
+.sh-cards{margin-left:auto;display:flex;gap:4px}
+.sh-cards b{font:700 9px/16px -apple-system,sans-serif;padding:0 4px;border:1px solid var(--sl);border-radius:3px;background:#fff;color:#1a1f71}
+.sh-paybody{padding:14px;background:var(--sbg);display:flex;flex-direction:column;gap:12px}
+.sh-primary{width:100%;height:56px;border:0;border-radius:5px;background:var(--sb);color:#fff;font:600 17px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;cursor:pointer}
+.sh-primary:hover{background:var(--sbh)}
+.sh-primary:focus-visible,.sh-xbtn:focus-visible,.sh-sumbar:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.sh-foot{display:flex;flex-wrap:wrap;gap:6px 14px;padding-top:18px;border-top:1px solid var(--sl);font-size:12px}
+.sh-foot a{color:var(--sb);text-decoration:underline;text-underline-offset:3px}
+.sh-tyhead{display:flex;align-items:center;gap:12px}
+.sh-okc{flex:none;width:46px;height:46px;border-radius:999px;box-shadow:inset 0 0 0 2px var(--sb);display:flex;align-items:center;justify-content:center}
+.sh-tyhead p{margin:0;color:var(--sm);font-size:13px}
+.sh-tyhead h1{font-size:21px}
+.sh-box{border:1px solid var(--sl);border-radius:5px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.sh-box p{margin:0}
+.sh-ext{border-color:var(--sl)}
+.sh-extwrap{position:relative;display:flex;flex-direction:column;gap:6px}
+.sh-extwrap::before{content:"";position:absolute;inset:22px -6px -6px;border:2px dashed var(--orange);border-radius:9px;pointer-events:none}
+.sh-extag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;background:var(--peach);color:var(--orange-ink);font:700 11px var(--sans);letter-spacing:.02em}
+.sh-img{position:relative;overflow:hidden;border-radius:5px;background:var(--sky)}
+.sh-img .hero{position:absolute;left:0;top:0;width:390px;transform-origin:0 0}
+.sh-img *{animation:none!important}
+.sh-img .flake,.sh-img .cloud{display:none}
+.sh-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.sh-list li{display:flex;gap:10px;align-items:flex-start}
+.sh-list li::before{content:"";flex:none;width:6px;height:6px;margin-top:7px;border-radius:999px;background:var(--sb)}
+.sh-dl{display:grid;gap:14px}
+.sh-dl b{display:block;font-weight:600;margin-bottom:2px}
+.sh-dl span{color:var(--sm)}
+.sh-help{display:flex;flex-direction:column;gap:14px}
+.sh-wait{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:rgba(255,255,255,.92);font:600 15px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1a1a1a;animation:fade .2s both}
+.sh-wait .spin{width:40px;height:40px;border-radius:999px;border:3px solid rgba(20,92,162,.15);border-top-color:var(--blue);animation:spin .8s linear infinite}
+.sh-wait small{font-weight:400;color:#6b6b6b;font-size:13px}
 .proto{position:fixed;top:calc(8px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:40;padding:5px 10px;border-radius:999px;background:rgba(28,39,51,.78);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;pointer-events:none;opacity:0;animation:protoTag 4s .6s ease both}
 
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -187,23 +225,70 @@ h1.choose{margin:0;padding:26px 0 14px;font-family:var(--display);font-weight:70
     </div>
   </main>
 
-  <!-- THANK YOU -->
-  <main id="thanks" hidden>
-    <section class="hero" id="hero2" aria-label="The room's climb"></section>
-    <div class="gut" style="display:flex;flex-direction:column;gap:18px">
-      <section class="thanks-card glass">
-        <div class="okring"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <span class="eyebrow" style="color:var(--blue);margin-top:6px">Charity Gala · Do good. Feel good.</span>
-        <h2>Thank you</h2>
-        <p>Your gift of <b id="tyTotal" style="color:var(--ink)">HK$0</b> is received.</p>
-        <p id="tyLine" style="color:var(--orange-ink);font-weight:800"></p>
+  <!-- SHOPIFY NATIVE CHECKOUT (simulated) -->
+  <main id="checkout" class="shop" hidden>
+    <div class="sh-proto"><button type="button" class="sh-back" id="coBack">← Gala page</button><span>Shopify native checkout · simulated</span></div>
+    <header class="sh-head"><img alt="Paws for Good" data-word><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#145ca2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></header>
+    <button type="button" class="sh-sumbar" id="coSumBtn" aria-expanded="false" aria-controls="coSum"><span>Order summary <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><b id="coTop">HK$0.00</b></button>
+    <div class="sh-sum" id="coSum" hidden></div>
+    <div class="sh-body">
+      <section><p class="sh-cap">Express checkout</p>
+        <div class="sh-exp"><button type="button" class="sh-xbtn" data-pay="Apple Pay" aria-label="Apple Pay"><svg width="16" height="19" viewBox="0 0 17 20" aria-hidden="true"><path fill="#fff" d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM11.5 3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>Pay</button><button type="button" class="sh-xbtn" data-pay="Google Pay" aria-label="Google Pay"><b>G</b>&nbsp;Pay</button></div>
       </section>
-      <section style="display:flex;flex-direction:column;gap:10px">
-        <span class="eyebrow" style="color:var(--orange-ink);text-align:center">What your gift will do</span>
-        <div class="does" id="does"></div>
+      <div class="sh-or">OR</div>
+      <section class="sh-sec">
+        <div class="sh-h2row"><h2>Contact</h2><a href="#" onclick="return false">Log in</a></div>
+        <input class="sh-in" type="email" autocomplete="email" placeholder="Email" aria-label="Email">
+        <label class="sh-check"><input type="checkbox">Email me with news and offers</label>
       </section>
-      <p class="fine" style="margin-top:0">Your tax-deductible receipt is on its way by email.</p>
-      <button class="secondary" id="again" type="button">Back to the room</button>
+      <section class="sh-sec">
+        <h2>Payment</h2><p class="sh-sub">All transactions are secure and encrypted.</p>
+        <div class="sh-pay">
+          <div class="sh-payhead"><span class="sh-radio" aria-hidden="true"></span>Credit card<span class="sh-cards"><b>VISA</b><b>MC</b><b>AMEX</b></span></div>
+          <div class="sh-paybody">
+            <input class="sh-in" inputmode="numeric" autocomplete="cc-number" placeholder="Card number" aria-label="Card number">
+            <div class="sh-two"><input class="sh-in" inputmode="numeric" autocomplete="cc-exp" placeholder="Expiry (MM / YY)" aria-label="Expiration date"><input class="sh-in" inputmode="numeric" autocomplete="cc-csc" placeholder="Security code" aria-label="Security code"></div>
+            <input class="sh-in" autocomplete="cc-name" placeholder="Name on card" aria-label="Name on card">
+          </div>
+        </div>
+      </section>
+      <section class="sh-sec">
+        <h2>Billing address</h2>
+        <input class="sh-in" value="Hong Kong SAR" aria-label="Country/Region" readonly>
+        <div class="sh-two"><input class="sh-in" autocomplete="given-name" placeholder="First name" aria-label="First name"><input class="sh-in" autocomplete="family-name" placeholder="Last name" aria-label="Last name"></div>
+        <input class="sh-in" autocomplete="address-line1" placeholder="Address" aria-label="Address">
+        <input class="sh-in" autocomplete="address-level2" placeholder="District" aria-label="District">
+      </section>
+      <button type="button" class="sh-primary" data-pay="card" id="payNow">Pay now</button>
+      <footer class="sh-foot"><a href="#" onclick="return false">Refund policy</a><a href="#" onclick="return false">Privacy policy</a><a href="#" onclick="return false">Terms of service</a></footer>
+    </div>
+  </main>
+
+  <!-- SHOPIFY NATIVE THANK-YOU (simulated) + checkout UI extension block -->
+  <main id="tyShop" class="shop" hidden>
+    <div class="sh-proto"><button type="button" class="sh-back" id="tyProtoBack">← Gala page</button><span>Shopify thank-you page · simulated</span></div>
+    <header class="sh-head"><img alt="Paws for Good" data-word><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#145ca2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg></header>
+    <button type="button" class="sh-sumbar" id="tySumBtn" aria-expanded="false" aria-controls="tySum"><span>Show order summary <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><b id="tyTop">HK$0.00</b></button>
+    <div class="sh-sum" id="tySum" hidden></div>
+    <div class="sh-body">
+      <div class="sh-tyhead"><span class="sh-okc"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#145ca2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p>Confirmation #PFG-1042</p><h1>Thank you, Margaret!</h1></div></div>
+      <div class="sh-extwrap">
+        <span class="sh-extag">Custom block · Checkout UI extension · gala orders only</span>
+        <section class="sh-box sh-ext" aria-label="Gala thank-you">
+          <div class="sh-img" id="tyImg"><div class="hero" id="tyHero"></div></div>
+          <h2>Thank you for helping the room climb</h2>
+          <p>Your Charity Gala gift of <b id="tyAmt">HK$0</b> has been received. A tax-deductible receipt is on its way by email.</p>
+          <h3 style="font-size:15px">What your gift will do</h3>
+          <ul class="sh-list" id="tyDoes"></ul>
+          <button type="button" class="sh-primary" id="tyBack">Back to the gala page</button>
+        </section>
+      </div>
+      <section class="sh-box"><h2 style="font-size:16px">Your order is confirmed</h2><p style="color:var(--sm)">You’ll receive a confirmation email with your order number shortly.</p></section>
+      <section class="sh-box"><h2 style="font-size:16px">Order details</h2>
+        <div class="sh-dl"><div><b>Contact information</b><span>margaret.chan@example.com</span></div><div><b>Payment method</b><span id="tyMethod">Apple Pay · HK$0.00</span></div><div><b>Billing address</b><span>Margaret Chan<br>Hong Kong SAR</span></div></div>
+      </section>
+      <div class="sh-help"><span>Need help? <a class="sh-link" href="#" onclick="return false">Contact us</a></span><button type="button" class="sh-primary" id="tyCont">Continue shopping</button></div>
+      <footer class="sh-foot"><a href="#" onclick="return false">Refund policy</a><a href="#" onclick="return false">Privacy policy</a><a href="#" onclick="return false">Terms of service</a></footer>
     </div>
   </main>
 </div>
@@ -213,34 +298,7 @@ h1.choose{margin:0;padding:26px 0 14px;font-family:var(--display);font-weight:70
   <button class="give" id="giveBtn" type="button" hidden><span class="shine" aria-hidden="true"></span><span class="l">Give <span class="hk">HK$</span><span id="total">0</span></span><span class="r" id="giveR"></span></button>
 </div>
 
-<div id="pay" hidden>
-  <div class="scrim" id="scrim"></div>
-  <section class="sheet" role="dialog" aria-modal="true" aria-labelledby="payTitle">
-    <div class="grab" aria-hidden="true"></div>
-    <div id="payMain" style="display:flex;flex-direction:column;gap:16px">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <h3 id="payTitle">Your gift</h3>
-        <button type="button" id="payClose" class="paybtn card" style="width:auto;height:44px;text-decoration:none;padding:0 6px">Change</button>
-      </div>
-      <div class="sum" id="sum"></div>
-      <button type="button" class="paybtn apple" data-pay="Apple Pay"><svg width="18" height="20" viewBox="0 0 17 20" aria-hidden="true"><path fill="#fff" d="M14.1 10.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.7-1-2.7-4.1zM11.5 3c.7-.9 1.2-2 1-3.2-1 0-2.3.7-3 1.6-.7.8-1.2 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>Pay</button>
-      <button type="button" class="paybtn google" data-pay="Google Pay"><b style="font-weight:800">G</b> Pay</button>
-      <button type="button" class="paybtn card" id="cardToggle">Pay by card instead</button>
-      <form class="cardform" id="cardform" hidden>
-        <label for="cName">Name for the receipt<input id="cName" autocomplete="name" placeholder="e.g. Margaret Chan"></label>
-        <label for="cEmail">Email for the receipt<input id="cEmail" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com"></label>
-        <label for="cNum">Card number<input id="cNum" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456"></label>
-        <div class="two">
-          <label for="cExp">Expiry<input id="cExp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY"></label>
-          <label for="cCvc">Security code<input id="cCvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123"></label>
-        </div>
-        <button type="submit" class="paybtn go" id="cardPay">Pay</button>
-      </form>
-      <p class="note">Prototype: no payment is taken. The live page uses Shopify's secure checkout.</p>
-    </div>
-    <div class="proc" id="proc" hidden><div class="spin" aria-hidden="true"></div><b>Confirming your gift…</b></div>
-  </section>
-</div>
+<div class="sh-wait" id="wait" hidden role="status" aria-live="polite"><div class="spin" aria-hidden="true"></div><span id="waitMsg">Taking you to secure checkout…</span><small id="waitSub">Powered by Shopify</small></div>
 
 <script>
 (function(){
@@ -407,7 +465,7 @@ renderStats(0);
 /* live feed (sample) */
 var fi=0;
 var feedT=setInterval(function(){
-  if(!$('give').hidden&&$('pay').hidden&&fi<FEED.length){
+  if(!$('give').hidden&&$('wait').hidden&&fi<FEED.length){
     var it=FEED[fi++];liveAdd+=it[1];
     var tEl=document.createElement('div');tEl.className='toast';tEl.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="#ed8023" aria-hidden="true"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><circle cx="6" cy="9.5" r="2.2"/><circle cx="10" cy="6" r="2.2"/><circle cx="14" cy="6" r="2.2"/><circle cx="18" cy="9.5" r="2.2"/></svg>'+it[0];
     $('hero1').appendChild(tEl);setTimeout(function(){tEl.remove()},3700);
@@ -418,50 +476,52 @@ var feedT=setInterval(function(){
   }
 },8000);
 
-/* ---------- payment sheet ---------- */
-function openPay(){
-  var h='';GIFTS.forEach(function(g){if(sel[g.id])h+='<div><span>'+g.name+'</span><span class="v"><span class="hk">HK$</span>'+fmt(g.amt)+'</span></div>'});
-  h+='<div><span>Total gift</span><span class="v"><span class="hk">HK$</span>'+fmt(total())+'</span></div>';
-  $('sum').innerHTML=h;
-  document.querySelectorAll('[data-pay]').forEach(function(b){var pt=b.querySelector('.pt');if(!pt){pt=document.createElement('span');pt.className='pt';b.lastChild.remove();b.appendChild(pt)}pt.innerHTML=' Pay <span class="hk">HK$</span>'+fmt(total())});
-  $('cardPay').innerHTML='Pay <span class="hk">HK$</span>'+fmt(total());
-  $('payMain').hidden=false;$('proc').hidden=true;$('cardform').hidden=true;$('cardToggle').hidden=false;
-  $('pay').hidden=false;$('dock').hidden=true;
-  setTimeout(function(){document.querySelector('[data-pay]').focus()},50);
+/* ---------- hand-off to Shopify native checkout (simulated) ---------- */
+document.querySelectorAll('[data-word]').forEach(function(i){i.src=WORD});
+var money=function(n){return 'HK$'+fmt(n)+'.00'};
+function summaryHtml(){
+  var h='';GIFTS.forEach(function(g){if(sel[g.id])h+='<div class="sh-line"><span class="sh-thumb" style="background:'+g.medal+'"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="'+g.stroke+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg><i>1</i></span><span class="sh-ln"><b style="font-weight:600">'+g.name+'</b><small>Charity Gala gift</small></span><span>'+money(g.amt)+'</span></div>'});
+  h+='<div class="sh-tot"><span>Subtotal</span><span>'+money(total())+'</span></div><div class="sh-tot big"><span>Total</span><span><small>HKD</small>'+money(total())+'</span></div>';
+  return h;
 }
-function closePay(){$('pay').hidden=true;$('dock').hidden=false;$('giveBtn').focus()}
-$('giveBtn').addEventListener('click',openPay);
-$('scrim').addEventListener('click',closePay);$('payClose').addEventListener('click',closePay);
-document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('pay').hidden)closePay()});
-$('cardToggle').addEventListener('click',function(){$('cardform').hidden=false;$('cardToggle').hidden=true;$('cName').focus()});
-function confirmPay(){
-  $('payMain').hidden=true;$('proc').hidden=false;
-  setTimeout(showThanks,reduce?300:1400);
+function show(view){
+  ['give','checkout','tyShop'].forEach(function(v){$(v).hidden=v!==view});
+  $('dock').hidden=view!=='give';$('app').classList.toggle('shopmode',view!=='give');window.scrollTo(0,0);
 }
-document.querySelectorAll('[data-pay]').forEach(function(b){b.addEventListener('click',confirmPay)});
-$('cardform').addEventListener('submit',function(e){e.preventDefault();confirmPay()});
+function wait(msg,sub,ms,then){$('waitMsg').textContent=msg;$('waitSub').textContent=sub;$('wait').hidden=false;setTimeout(function(){$('wait').hidden=true;then()},reduce?150:ms)}
+function toggleSum(btn,box){var open=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',open);box.hidden=!open;btn.querySelector('span').firstChild.textContent=(open?'Hide':'Show')+' order summary '}
+$('coSumBtn').addEventListener('click',function(){toggleSum(this,$('coSum'))});
+$('tySumBtn').addEventListener('click',function(){toggleSum(this,$('tySum'))});
+$('giveBtn').addEventListener('click',function(){
+  $('coSum').innerHTML=summaryHtml();$('coTop').textContent=money(total());
+  $('coSumBtn').setAttribute('aria-expanded','false');$('coSum').hidden=true;$('coSumBtn').querySelector('span').firstChild.textContent='Show order summary ';
+  wait('Taking you to secure checkout…','Powered by Shopify',900,function(){show('checkout')});
+});
+$('coBack').addEventListener('click',function(){show('give');$('giveBtn').focus()});
+document.querySelectorAll('#checkout [data-pay]').forEach(function(b){b.addEventListener('click',function(){
+  var m=b.dataset.pay==='card'?'Visa •••• 4242':b.dataset.pay;
+  wait('Processing your payment…','Please don’t close this page',1300,function(){showThanks(m)});
+})});
 
-/* ---------- thank you ---------- */
-var s2=null;
-function showThanks(){
+/* ---------- Shopify thank-you page + checkout UI extension block ---------- */
+var s3=null;
+function showThanks(method){
   var t=total(),base=pctOf(RAISED+liveAdd),all=pctOf(RAISED+liveAdd+t);
-  $('pay').hidden=true;$('give').hidden=true;$('thanks').hidden=false;window.scrollTo(0,0);
-  if(!s2){s2=makeScene($('hero2'),'b');$('hero2').insertAdjacentHTML('beforeend','<div class="topbar"><span class="pill-glass"><img src="'+WORD+'" alt="Paws for Good — Whiskers N Paws"></span><span class="pill-glass live"><i></i>Live</span></div><div class="hero-copy"><span class="eyebrow">You helped the room climb</span><h2>'+Math.round(base)+'% → <span id="tyPct">'+Math.round(base)+'</span>%</h2></div>')}
-  else{$('hero2').querySelector('h2').innerHTML=Math.round(base)+'% → <span id="tyPct">'+Math.round(base)+'</span>%'}
-  s2.silent=true;drawScene(s2,base,base,true);s2.silent=false;
-  $('tyTotal').innerHTML='<span class="hk">HK$</span>'+fmt(t);
-  var mk=[25,50,75,100],passed=mk.filter(function(m){return base<m&&all>=m}),next=mk.filter(function(m){return m>all})[0];
-  $('tyLine').textContent=passed.length?'You carried the room past '+passed[passed.length-1]+'%!':(next?'Only HK$'+fmt(Math.max(0,GOAL*next/100-RAISED-liveAdd-t))+' to the '+(next===100?'summit':next+'% mark')+'.':'The room reached the summit!');
-  var d='';GIFTS.forEach(function(g){if(sel[g.id])d+='<div class="item glass"><span class="medal" style="background:'+g.medal+'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="'+g.stroke+'" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span style="min-width:0"><b>'+g.name+'</b> '+g.does+'</span></div>'});
-  $('does').innerHTML=d;
-  setTimeout(function(){climbTo(s2,all,1800,base,true,function(e){var el=$('tyPct');if(el)el.textContent=Math.round(base+(all-base)*e)})},600);
+  $('tySum').innerHTML=summaryHtml();$('tyTop').textContent=money(t);$('tySum').hidden=true;$('tySumBtn').setAttribute('aria-expanded','false');
+  $('tyAmt').textContent='HK$'+fmt(t);$('tyMethod').textContent=method+' · '+money(t);
+  var d='';GIFTS.forEach(function(g){if(sel[g.id])d+='<li><span><b style="font-weight:600">'+g.name+'</b> '+g.does+'</span></li>'});$('tyDoes').innerHTML=d;
+  show('tyShop');
+  if(!s3)s3=makeScene($('tyHero'),'c');
+  var w=$('tyImg').clientWidth,k=w/390;$('tyHero').style.transform='scale('+k+')';$('tyImg').style.height=Math.round(440*k*.82)+'px';
+  s3.silent=true;drawScene(s3,all,base,true);
 }
-$('again').addEventListener('click',function(){
+function backToRoom(){
   liveAdd+=total();sel={};dispTotal=0;
   document.querySelectorAll('.gift').forEach(function(b){b.setAttribute('aria-pressed','false');b.querySelector('.lbl').textContent='Add'});
-  $('thanks').hidden=true;$('give').hidden=false;$('dock').hidden=false;window.scrollTo(0,0);
+  show('give');
   $('raised').textContent=fmt(RAISED+liveAdd);
   s1.silent=true;var b=pctOf(RAISED+liveAdd);drawScene(s1,b,b,false);s1.silent=false;renderStats(b);updateDock();
-});
+}
+$('tyBack').addEventListener('click',backToRoom);$('tyCont').addEventListener('click',backToRoom);$('tyProtoBack').addEventListener('click',backToRoom);
 })();
 </script>
