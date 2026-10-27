@@ -1,7 +1,7 @@
 <title>PfG Gala Climb</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..800&family=Figtree:wght@400..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..800&family=Figtree:wght@400..900&family=Manrope:wght@700..800&family=Sora:wght@600..700&display=swap">
 <style>
 /* Layout: one phone-width column — mountain hero band, frosted stats panel overlapping it, frosted gift cards, frosted sticky give bar; checkout hands off to Shopify's native checkout (simulated); thank-you is Shopify's native page with one custom extension block. Single committed pastel look. */
 :root{
@@ -40,6 +40,12 @@
 :root,:root[data-cards="jewel"]{--c-v:#1f4a8a;--c-b:#5b3d87;--c-c:#8e2c48;--c-g:#7d5a22}
 :root[data-cards="metals"]{--c-v:#8a6a12;--c-b:#9b4f49;--c-c:#56637a;--c-g:#7f4320}
 :root[data-cards="brand"]{--c-v:#0f3f73;--c-b:#2f72b8;--c-c:#c4620f;--c-g:#7a4a1c}
+
+/* ---- amount font (prototype switcher) ---- */
+:root,:root[data-num="figtree"]{--num-font:Figtree,system-ui,sans-serif;--num-w:800;--num-ls:-.02em}
+:root[data-num="manrope"]{--num-font:Manrope,system-ui,sans-serif;--num-w:800;--num-ls:-.02em}
+:root[data-num="sora"]{--num-font:Sora,system-ui,sans-serif;--num-w:700;--num-ls:-.03em}
+:root[data-num="serif"]{--num-font:'Playfair Display',Georgia,serif;--num-w:700;--num-ls:-.01em}
 .hero-copy h2{color:var(--hero-ink);text-shadow:var(--hero-shadow)}
 .hero-copy .eyebrow{color:var(--hero-eb)!important;text-shadow:var(--hero-shadow)}
 .tonebar{position:relative;z-index:25;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:700}
@@ -90,7 +96,7 @@ button{font:inherit;color:inherit}
 .stats{position:relative;margin:-64px 0 0;padding:18px 20px;border-radius:24px;display:flex;flex-direction:column;gap:10px;animation:rise .7s .3s cubic-bezier(.2,.8,.2,1) both;z-index:6}
 .stats .row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
 .stats .eyebrow{color:var(--blue)}
-.amt-xl{font-family:var(--display);font-weight:700;font-size:30px;line-height:34px;font-variant-numeric:lining-nums tabular-nums}
+.amt-xl{font-family:var(--num-font);font-weight:var(--num-w);letter-spacing:var(--num-ls);font-size:30px;line-height:34px;font-variant-numeric:lining-nums tabular-nums}
 .pct{font-size:30px;line-height:34px;font-weight:800;letter-spacing:-.02em;color:var(--blue);transition:color .3s;font-variant-numeric:tabular-nums}
 .pct.mine{color:var(--orange-ink)}
 .bar{position:relative;height:8px;border-radius:999px;background:rgba(20,92,162,.12);overflow:hidden}
@@ -115,7 +121,7 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
 .gname{font-size:17px;line-height:22px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .tag{margin-left:auto;font-size:12px;line-height:16px;font-weight:800;letter-spacing:0;text-transform:none;color:#4a3410;background:#f6d48b;padding:4px 10px;border-radius:999px;white-space:nowrap}
 .gbody{display:flex;flex-direction:column;gap:4px;width:100%;padding:8px 16px 12px}
-.amt{font-family:var(--display);font-weight:700;font-size:40px;line-height:44px;color:var(--t);font-variant-numeric:lining-nums;letter-spacing:-.01em}
+.amt{font-family:var(--num-font);font-weight:var(--num-w);font-size:40px;line-height:44px;color:var(--t);font-variant-numeric:lining-nums tabular-nums;letter-spacing:var(--num-ls)}
 .cur{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--t);opacity:.8;margin-right:4px;vertical-align:16px}
 .hk{font-family:var(--sans);font-size:.5em;font-weight:700;letter-spacing:.02em;margin-right:.14em;vertical-align:.62em;opacity:.78}
 .gift .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%}
@@ -241,6 +247,7 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
   <main id="give">
     <div class="tonebar" role="group" aria-label="Prototype colour tone"><span>Brand tone</span><div class="seg"><button type="button" data-tone="bluehour">Blue hour</button><button type="button" data-tone="sunset">Sunset</button><button type="button" data-tone="daylight">Daylight</button></div></div>
     <div class="tonebar" role="group" aria-label="Prototype card colours" style="padding-top:0"><span>Card colours</span><div class="seg"><button type="button" data-cards="jewel">Jewel</button><button type="button" data-cards="metals">Metals</button><button type="button" data-cards="brand">PfG brand</button></div></div>
+    <div class="tonebar" role="group" aria-label="Prototype amount font" style="padding-top:0"><span>Amount font</span><div class="seg"><button type="button" data-num="figtree">Figtree</button><button type="button" data-num="manrope">Manrope</button><button type="button" data-num="sora">Sora</button><button type="button" data-num="serif">Serif</button></div></div>
     <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
     <div class="gut">
       <section class="stats glass" aria-label="Raised tonight">
@@ -451,12 +458,14 @@ function climbTo(sc,to,ms,base,mine,onTick){
 /* ---------- colour tone switcher (prototype) ---------- */
 function setTone(t){document.documentElement.setAttribute('data-tone',t);document.querySelectorAll('[data-tone]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.tone===t)});syncHash()}
 function setCards(c){document.documentElement.setAttribute('data-cards',c);document.querySelectorAll('button[data-cards]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cards===c)});syncHash()}
-function syncHash(){try{history.replaceState(null,'','#tone='+document.documentElement.getAttribute('data-tone')+'&cards='+(document.documentElement.getAttribute('data-cards')||'jewel'))}catch(e){}}
+function syncHash(){var d=document.documentElement;try{history.replaceState(null,'','#tone='+d.getAttribute('data-tone')+'&cards='+(d.getAttribute('data-cards')||'jewel')+'&num='+(d.getAttribute('data-num')||'figtree'))}catch(e){}}
+function setNum(n){document.documentElement.setAttribute('data-num',n);document.querySelectorAll('button[data-num]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.num===n)});syncHash()}
+document.querySelectorAll('button[data-num]').forEach(function(b){b.addEventListener('click',function(){setNum(b.dataset.num)})});
 document.querySelectorAll('button[data-tone]').forEach(function(b){b.addEventListener('click',function(){setTone(b.dataset.tone)})});
 document.querySelectorAll('button[data-cards]').forEach(function(b){b.addEventListener('click',function(){setCards(b.dataset.cards)})});
 var h0=location.hash,c0=(h0.match(/cards=(\w+)/)||[])[1]||'jewel';
-document.documentElement.setAttribute('data-cards',c0);
-setTone((h0.match(/tone=(\w+)/)||[])[1]||'bluehour');setCards(c0);
+document.documentElement.setAttribute('data-cards',c0);var n0=(h0.match(/num=(\w+)/)||[])[1]||'figtree';document.documentElement.setAttribute('data-num',n0);
+setTone((h0.match(/tone=(\w+)/)||[])[1]||'bluehour');setCards(c0);setNum(n0);
 
 /* ---------- give screen ---------- */
 var s1=makeScene($('hero1'),'a');
