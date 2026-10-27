@@ -19,21 +19,21 @@
   --far0:#9fbbdb;--far1:#f3e2d2;--bk0:#f4f1f0;--bk1:#8fb0d4;--pk1:#fff0e3;--pk2:#b9cde6;--pk3:#3f73ab;
   --pp0:#fffaf6;--pp1:#fbeadc;--pp2:#aac2e0;--pp3:#33669e;--sh:#0c3d70;--mc:#fff5ee;--hl0:#e3cfbb;--hl1:#f7ece2;--h20:#efe1d3;
   --mist:#fff5ee;--pg1:#fbf0e7;--pg2:#f3e9e0;--w1:#f8c79c;--w2:#f3e0cc;--w3:#b8cde6;--sky:#5b8cc2;
-  --hero-ink:#ffffff;--hero-eb:#ffd3a6;--hero-shadow:0 1px 14px rgba(8,40,80,.4);--pole:#fff5ee;--logo-fx:drop-shadow(0 0 1.5px #fff5ee) drop-shadow(0 0 6px rgba(255,245,238,.85));
+  --hero-ink:#ffffff;--hero-eb:#ffb066;--hero-shadow:0 1px 14px rgba(8,40,80,.4);--eb-shadow:0 1px 2px rgba(6,30,64,.55),0 0 12px rgba(6,30,64,.35);--pole:#fff5ee;--logo-fx:drop-shadow(0 0 1.5px #fff5ee) drop-shadow(0 0 6px rgba(255,245,238,.85));
 }
 :root[data-tone="sunset"]{
   --sk0:#1d5c9c;--sk1:#e39a64;--sk2:#f6c495;--sk3:#fff0e2;--sun0:#fff8ef;--sun1:#f9b878;--sun2:#ed8023;
   --far0:#e6b896;--far1:#f6e3d2;--bk0:#fbeee4;--bk1:#c79f8c;--pk1:#ffe8d6;--pk2:#e7bfa6;--pk3:#2f5f95;
   --pp0:#fffaf5;--pp1:#fde2cd;--pp2:#dcb39c;--pp3:#245489;--sh:#123f73;--mc:#fff5ee;--hl0:#e8c9ad;--hl1:#f8ebdf;--h20:#f1dfcd;
   --mist:#fff5ee;--pg1:#fdeee2;--pg2:#f3e9e0;--w1:#f6b880;--w2:#f8d6b5;--w3:#c3d4ea;--sky:#e39a64;
-  --hero-ink:#ffffff;--hero-eb:#fff1e0;--hero-shadow:0 1px 14px rgba(70,30,10,.38);--pole:#fff5ee;--logo-fx:drop-shadow(0 0 1.5px #fff5ee) drop-shadow(0 0 6px rgba(255,245,238,.85));
+  --hero-ink:#ffffff;--hero-eb:#ffffff;--hero-shadow:0 1px 14px rgba(70,30,10,.38);--eb-shadow:0 1px 2px rgba(60,25,5,.55),0 0 12px rgba(60,25,5,.35);--pole:#fff5ee;--logo-fx:drop-shadow(0 0 1.5px #fff5ee) drop-shadow(0 0 6px rgba(255,245,238,.85));
 }
 :root[data-tone="daylight"]{
   --sk0:#7fa8d6;--sk1:#c9dcf0;--sk2:#f6ebe4;--sk3:#fff5ee;--sun0:#ffffff;--sun1:#fde3c8;--sun2:#f6c08c;
   --far0:#d3e1f0;--far1:#f3e9e0;--bk0:#f7f7f8;--bk1:#a9c3e0;--pk1:#f6f1ee;--pk2:#c2d5ea;--pk3:#4f7fb4;
   --pp0:#fdfdfd;--pp1:#efeae7;--pp2:#b4cae3;--pp3:#3f72aa;--sh:#145ca2;--mc:#fff5ee;--hl0:#e6d6c5;--hl1:#f7eee6;--h20:#efe3d7;
   --mist:#fff5ee;--pg1:#fbf1e8;--pg2:#f3e9e0;--w1:#f8cfa8;--w2:#efe0cf;--w3:#bfd3ec;--sky:#9fbfe2;
-  --hero-ink:#0f3f73;--hero-eb:#c4620f;--hero-shadow:none;--pole:#0f3f73;--logo-fx:none;
+  --hero-ink:#0f3f73;--hero-eb:#d9650a;--hero-shadow:none;--eb-shadow:0 0 10px rgba(255,255,255,.7);--pole:#0f3f73;--logo-fx:none;
 }
 
 /* ---- card colour sets (prototype switcher) ---- */
@@ -47,7 +47,7 @@
 :root[data-num="sora"]{--num-font:Sora,system-ui,sans-serif;--num-w:700;--num-ls:-.03em}
 :root[data-num="serif"]{--num-font:'Playfair Display',Georgia,serif;--num-w:700;--num-ls:-.01em}
 .hero-copy h2{color:var(--hero-ink);text-shadow:var(--hero-shadow)}
-.hero-copy .eyebrow{color:var(--hero-eb)!important;text-shadow:var(--hero-shadow)}
+.hero-copy .eyebrow{color:var(--hero-eb)!important;text-shadow:var(--eb-shadow,var(--hero-shadow));font-size:13px;line-height:18px;letter-spacing:.16em}
 .tonebar{position:relative;z-index:25;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:700}
 .tonebar span{opacity:.75;white-space:nowrap}
 .tonebar .seg{display:flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
