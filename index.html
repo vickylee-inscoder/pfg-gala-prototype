@@ -120,11 +120,12 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
 .gift[aria-pressed="true"] .gico{transform:rotate(-8deg) scale(1.08)}
 .gname{font-size:17px;line-height:22px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .tag{margin-left:auto;font-size:12px;line-height:16px;font-weight:800;letter-spacing:0;text-transform:none;color:#4a3410;background:#f6d48b;padding:4px 10px;border-radius:999px;white-space:nowrap}
-.gbody{display:flex;flex-direction:column;gap:4px;width:100%;padding:8px 16px 12px}
-.amt{font-family:var(--num-font);font-weight:var(--num-w);font-size:40px;line-height:44px;color:var(--t);font-variant-numeric:lining-nums tabular-nums;letter-spacing:var(--num-ls)}
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;row-gap:2px;align-items:center;width:100%;padding:12px 16px}
+.ginfo{display:flex;flex-direction:column;gap:2px;min-width:0;container-type:inline-size}
+.ginfo .amt{font-size:min(38px,19cqi)}
+.amt{font-family:var(--num-font);font-weight:var(--num-w);font-size:38px;line-height:42px;color:var(--t);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums;letter-spacing:var(--num-ls)}
 .cur{font-family:var(--sans);font-size:16px;font-weight:800;color:var(--t);opacity:.8;margin-right:4px;vertical-align:16px}
 .hk{font-family:var(--sans);font-size:.5em;font-weight:700;letter-spacing:.02em;margin-right:.14em;vertical-align:.62em;opacity:.78}
-.gift .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%}
 .impact{font-size:15px;line-height:21px;color:var(--ink-soft);font-weight:600}
 .add{position:relative;flex:none;height:44px;min-width:112px;padding:0 16px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:17px;font-weight:800;background:var(--peach);color:var(--orange-ink);box-shadow:inset 0 0 0 1.5px var(--peach-line);transition:background .25s,color .25s,box-shadow .25s}
 .add .dot{width:22px;height:22px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--orange);transition:background .25s,transform .35s cubic-bezier(.34,1.56,.64,1)}
@@ -133,7 +134,7 @@ h1.choose{margin:0;padding:20px 0 10px;font-family:var(--display);font-weight:70
 .add .tick{display:none} .gift[aria-pressed="true"] .add .tick{display:block} .gift[aria-pressed="true"] .add .plus{display:none}
 .tick path{stroke-dasharray:26;animation:draw .35s .1s ease-out both}
 .chip{position:absolute;right:6px;bottom:52px;padding:4px 10px;border-radius:999px;background:var(--blue);color:#fff;font-size:13px;line-height:16px;font-weight:800;white-space:nowrap;pointer-events:none;animation:chip 1.2s ease-out forwards}
-.lift{display:none;align-items:center;gap:8px;width:100%;margin-top:6px;padding-top:8px;border-top:1px dashed rgba(237,128,35,.45);font-size:14px;line-height:20px;font-weight:700;color:var(--orange-ink);animation:fade .4s both}
+.lift{display:none;grid-column:1 / -1;align-items:center;gap:8px;width:100%;margin-top:8px;padding-top:8px;border-top:1px dashed rgba(237,128,35,.45);font-size:14px;line-height:20px;font-weight:700;color:var(--orange-ink);animation:fade .4s both}
 .gift[aria-pressed="true"] .lift{display:flex}
 .fine{position:relative;z-index:1;margin:22px auto 0;width:fit-content;max-width:100%;padding:10px 16px;border-radius:14px;background:rgba(255,255,255,.82);box-shadow:inset 0 0 0 1px rgba(28,39,51,.06);text-align:center;font-size:13px;line-height:20px;font-weight:600;color:var(--ink-soft)}
 
@@ -476,9 +477,9 @@ GIFTS.forEach(function(g,i){
   var pc=Math.round(g.amt/GOAL*1000)/10;
   gHtml+='<div class="gift-wrap" style="animation-delay:'+(450+i*90)+'ms"><button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+')">'+
   '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+(g.top?'<span class="tag">Greatest impact</span>':'')+'</span>'+
-  '<span class="gbody"><span class="amt"><span class="cur">HK$</span>'+fmt(g.amt)+'</span>'+
-  '<span class="bottom"><span class="impact">'+g.impact+'</span>'+
-  '<span class="add" aria-hidden="true"><span class="dot"><svg class="plus" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#ed8023" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">Add</span></span></span>'+
+  '<span class="gbody"><span class="ginfo"><span class="amt"><span class="cur">HK$</span>'+fmt(g.amt)+'</span>'+
+  '<span class="impact">'+g.impact+'</span></span>'+
+  '<span class="add" aria-hidden="true"><span class="dot"><svg class="plus" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#ed8023" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">Add</span></span>'+
   '<span class="lift"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a84f0a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20l6-9 4 5 3-4 5 8"/></svg>Carries the room '+pc+'% higher</span></span>'+
   '</button></div>';
 });
