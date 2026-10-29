@@ -25,64 +25,55 @@ button{font:inherit;color:inherit}
 .label{font-size:11px;line-height:16px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-2)}
 
 /* prototype-only switcher */
-.protobar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#1c2733;color:#fff;font-size:12px;font-weight:600}
-.protobar span{opacity:.75;white-space:nowrap}
-.protobar .seg{display:flex;gap:2px;margin-left:auto;background:rgba(255,255,255,.1);border-radius:999px;padding:3px}
-.protobar button{border:0;border-radius:999px;padding:6px 10px;background:transparent;color:#fff;font:600 12px var(--sans);cursor:pointer;white-space:nowrap}
-.protobar button[aria-pressed="true"]{background:#fff;color:#1c2733}
 
 /* header */
-.top{display:flex;justify-content:center;align-items:center;padding:20px 24px 0}
-.top img{width:172px;height:auto;display:block}
+.top{display:flex;justify-content:center;align-items:center;padding:16px 24px 0}
+.top img{width:156px;height:auto;display:block}
 
 /* hero */
-.hero{text-align:center;padding:40px 0 6px}
+.hero{text-align:center;padding:22px 0 0}
 .hero .label{color:var(--orange-ink)}
-.hero h1{margin:14px 0 0;font-family:var(--serif);font-weight:500;font-size:44px;line-height:46px;letter-spacing:-.005em;color:var(--ink)}
-.hero p{margin:14px auto 0;max-width:300px;font-family:var(--serif);font-style:italic;font-size:20px;line-height:26px;color:var(--ink-2)}
-.ill{display:block;width:100%;max-width:330px;height:auto;margin:22px auto 0}
+.hero h1{margin:8px 0 0;font-family:var(--serif);font-weight:500;font-size:40px;line-height:42px;letter-spacing:-.005em;color:var(--ink)}
+.hero p{margin:8px auto 0;max-width:300px;font-family:var(--serif);font-style:italic;font-size:18px;line-height:24px;color:var(--ink-2)}
+.ill{display:block;width:100%;max-width:236px;height:auto;margin:10px auto 0}
 .draw path,.draw ellipse,.draw circle.s{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 2.8s cubic-bezier(.45,.05,.25,1) forwards}
 .draw .d2{animation-delay:.5s}.draw .d3{animation-delay:1.1s}.draw .d4{animation-delay:1.7s}
 .draw .dot{opacity:0;animation:fade .6s 2.2s forwards}
 
 /* live total: typographic, no container */
-.live{margin:14px 0 0;padding-top:20px;padding-bottom:18px;border-bottom:1px solid var(--line);text-align:center}
+.live{margin:4px 0 0;padding-top:12px;padding-bottom:16px;border-bottom:1px solid var(--line);text-align:center}
 .live .label{display:inline-flex;align-items:center;gap:8px}
 .live .label i{width:6px;height:6px;border-radius:999px;background:var(--orange);animation:pulse 2.4s ease-in-out infinite}
-.raised{margin-top:10px;font-family:var(--serif);font-weight:500;font-size:34px;line-height:38px;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
+.raised{margin-top:4px;font-family:var(--serif);font-weight:500;font-size:30px;line-height:34px;font-variant-numeric:lining-nums tabular-nums;color:var(--ink)}
 .raised small{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;margin-right:4px;vertical-align:6px;color:var(--ink-2)}
 .of{margin-top:2px;font-size:13px;color:var(--ink-3)}
-.track{position:relative;height:9px;margin:20px 0 0}
+.track{position:relative;height:9px;margin:14px 0 0}
 .track:before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:var(--line-2)}
 .track .tick{position:absolute;top:1px;width:1px;height:7px;background:var(--line-2)}
 .track .fill{position:absolute;left:0;top:3.5px;height:2px;background:var(--ink);width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
 .track .mine{position:absolute;top:3.5px;height:2px;background:var(--orange);width:0;transition:width .9s cubic-bezier(.2,.8,.2,1),left 1.2s cubic-bezier(.2,.8,.2,1)}
 .track .knob{position:absolute;top:0;width:9px;height:9px;margin-left:-4.5px;border-radius:999px;background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--ink);left:0;transition:left 1.2s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
 .track .knob.mine{box-shadow:inset 0 0 0 1.5px var(--orange)}
-.trackmeta{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.trackmeta b{font-weight:600;color:var(--ink)}
-.trackmeta .you{color:var(--orange-ink);font-weight:600}
-.feed{height:22px;margin-top:10px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:22px;color:var(--ink-2);transition:opacity .6s}
+.feed{height:22px;margin-top:8px;font-family:var(--serif);font-style:italic;font-size:17px;line-height:22px;color:var(--ink-2);transition:opacity .6s}
 
 /* gifts */
-.choose{padding:38px 0 18px;text-align:center}
-.choose h2{margin:10px 0 0;font-family:var(--serif);font-weight:500;font-size:34px;line-height:38px}
+.choose{padding:26px 0 14px;scroll-margin-top:8px;text-align:center}
+.choose h2{margin:6px 0 0;font-family:var(--serif);font-weight:500;font-size:30px;line-height:34px}
 .choose p{margin:8px 0 0;font-size:14px;color:var(--ink-2)}
 .gifts{display:flex;flex-direction:column;gap:14px}
-.gift{appearance:none;width:100%;border:1px solid var(--line);border-radius:2px;background:rgba(255,255,255,.6);padding:0;text-align:left;cursor:pointer;display:block;position:relative;transition:border-color .3s,background .3s,box-shadow .3s;opacity:0;animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.gift{appearance:none;width:100%;border:1px solid var(--line);border-left:3px solid var(--t);border-radius:2px;background:rgba(255,255,255,.6);padding:0;text-align:left;cursor:pointer;display:block;position:relative;transition:border-color .3s,background .3s,box-shadow .3s;opacity:0;animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
 .gift:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.gift[aria-pressed="true"]{border-color:var(--ink);background:#fff;box-shadow:0 18px 40px -24px rgba(19,38,63,.45)}
-.gbody{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:16px;align-items:center;padding:20px 20px 18px}
-.cue{width:64px;height:64px;display:flex;align-items:center;justify-content:center}
-.cue svg{width:64px;height:64px;display:block}
-.cue .num{display:none;font-family:var(--serif);font-weight:400;font-size:46px;line-height:1;color:var(--ink)}
+.gift[aria-pressed="true"]{border-color:var(--ink);border-left-color:var(--t);background:#fff;box-shadow:0 18px 40px -24px rgba(19,38,63,.45)}
+.gbody{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:16px;align-items:center;padding:18px 18px 16px}
+.cue{width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.cue svg{width:56px;height:56px;display:block;stroke:var(--t)}
 .ginfo{min-width:0}
 .ginfo>span{display:block}
 .ginfo>.gname{display:flex}
 .ginfo>.lift{display:none}
 .gift[aria-pressed="true"] .ginfo>.lift{display:block}
 .gname{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
-.gname b{font-size:12px;line-height:16px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.gname b{font-size:12px;line-height:16px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--t)}
 .gname em{font-style:normal;font-size:10.5px;line-height:16px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange-ink)}
 .amt{margin-top:6px;font-family:var(--sans);font-weight:500;font-size:30px;line-height:34px;letter-spacing:-.01em;font-variant-numeric:lining-nums tabular-nums;color:var(--ink);white-space:nowrap}
 .amt small{font-size:12px;font-weight:600;letter-spacing:.14em;margin-right:5px;vertical-align:7px;color:var(--ink-2)}
@@ -96,16 +87,6 @@ button{font:inherit;color:inherit}
 .gift[aria-pressed="true"] .sel .pl{display:none}
 .gift[aria-pressed="true"] .sel .ck{display:block;animation:fade .3s both}
 
-/* tier cue variants */
-:root[data-cue="numerals"] .cue svg{display:none}
-:root[data-cue="numerals"] .cue .num{display:block}
-:root[data-cue="line"] .gbody{grid-template-columns:minmax(0,1fr);padding-left:22px}
-:root[data-cue="line"] .cue{display:none}
-:root[data-cue="line"] .gift{border-left:3px solid var(--t)}
-:root[data-cue="line"] .gift[aria-pressed="true"]{border-color:var(--ink);border-left-color:var(--t)}
-:root[data-cue="line"] .amt{color:var(--t)}
-:root[data-cue="line"] .gname b{color:var(--t)}
-
 .fine{margin:30px 0 0;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:12px;line-height:19px;letter-spacing:.04em;color:var(--ink-3)}
 .sig{margin:20px 0 0;text-align:center;font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-2)}
 
@@ -118,7 +99,7 @@ button{font:inherit;color:inherit}
 .give .l span{font-size:18px;letter-spacing:.02em;margin-left:6px}
 .give .r{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 .give.in{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
-.give-off{height:58px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line-2);border-radius:2px;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2)}
+.give-off{width:100%;height:58px;display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;cursor:pointer;color:var(--ink)!important;border-color:var(--ink)!important;border:1px solid var(--line-2);border-radius:2px;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2)}
 
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -211,7 +192,6 @@ button{font:inherit;color:inherit}
 
 <div class="app" id="app">
   <main id="give">
-    <div class="protobar" role="group" aria-label="Prototype tier style"><span>Tier style</span><div class="seg"><button type="button" data-cue="drawings">Drawings</button><button type="button" data-cue="numerals">Numerals</button><button type="button" data-cue="line">Colour line</button></div></div>
     <header class="top"><img alt="Paws for Good" data-logo></header>
 
     <section class="hero gut" aria-labelledby="h1">
@@ -229,12 +209,11 @@ button{font:inherit;color:inherit}
         <span class="tick" style="left:25%"></span><span class="tick" style="left:50%"></span><span class="tick" style="left:75%"></span>
         <span class="fill" id="barBase"></span><span class="mine" id="barMine"></span><span class="knob" id="knob"></span>
       </div>
-      <div class="trackmeta"><span><b id="pct">62%</b> of the goal</span><span id="you"></span></div>
       <div class="feed" id="feed" aria-live="polite"></div>
     </section>
 
     <section class="gut" aria-labelledby="h2">
-      <div class="choose">
+      <div class="choose" id="chooseHead">
         <span class="label">Your gift</span>
         <h2 id="h2">Choose your gift</h2>
         <p>Select one or more. Tap again to remove.</p>
@@ -315,7 +294,7 @@ button{font:inherit;color:inherit}
 </div>
 
 <div class="dock" id="dock">
-  <div class="give-off" id="giveOff">Select a gift to continue</div>
+  <button type="button" class="give-off" id="giveOff">Choose your gift<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M3 8l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <button class="give" id="giveBtn" type="button" hidden><span class="l">Give<span>HK$<b id="total" style="font-weight:700">0</b></span></span><span class="r" id="giveR"></span></button>
 </div>
 
@@ -349,21 +328,17 @@ var count=function(){return GIFTS.filter(function(g){return sel[g.id]}).length};
 var icon=function(id,size,col){return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 48 48" fill="none" stroke="'+(col||'#ED8023')+'" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICON[id]+'</svg>'};
 document.querySelectorAll('[data-logo]').forEach(function(i){i.src=LOGO});
 
-/* prototype tier-style switch */
-function setCue(c){document.documentElement.setAttribute('data-cue',c);document.querySelectorAll('button[data-cue]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.cue===c)});try{history.replaceState(null,'','#cue='+c)}catch(e){}}
-document.querySelectorAll('button[data-cue]').forEach(function(b){b.addEventListener('click',function(){setCue(b.dataset.cue)})});
-setCue((location.hash.match(/cue=(\w+)/)||[])[1]||'drawings');
 
 /* gifts */
 var h='';
 GIFTS.forEach(function(g,i){
   var pc=Math.round(g.amt/GOAL*1000)/10;
   h+='<button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+');animation-delay:'+(250+i*110)+'ms">'+
-   '<span class="gbody"><span class="cue">'+icon(g.id,64)+'<span class="num" aria-hidden="true">'+g.num+'</span></span>'+
+   '<span class="gbody"><span class="cue">'+icon(g.id,56)+'</span>'+
    '<span class="ginfo"><span class="gname"><b>'+g.name+'</b>'+(g.top?'<em>Greatest impact</em>':'')+'</span>'+
    '<span class="amt"><small>HK$</small>'+fmt(g.amt)+'</span>'+
    '<span class="impact">'+g.impact+'</span>'+
-   '<span class="lift">Moves the room '+pc+'% closer to the goal</span></span></span>'+
+   '</span></span>'+
    '<span class="sel"><svg class="pl" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><svg class="ck" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.4l3.3 3.3L12 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lbl">Select</span></span></button>';
 });
 $('gifts').innerHTML=h;
@@ -375,10 +350,7 @@ function render(){
   $('barBase').style.width=base+'%';
   $('barMine').style.left=base+'%';$('barMine').style.width=(all-base)+'%';
   $('knob').style.left=all+'%';$('knob').classList.toggle('mine',n>0);
-  $('pct').textContent=Math.round(base)+'%';
   $('bar').setAttribute('aria-valuenow',Math.round(all));
-  $('you').innerHTML=n?'With your gift · <b style="color:inherit">'+(Math.round(all*10)/10)+'%</b>':'';
-  $('you').className=n?'you':'';
 }
 function updateDock(){
   var n=count(),t=total(),wasOff=$('giveBtn').hidden;
@@ -387,6 +359,7 @@ function updateDock(){
   tweenNum($('total'),dispTotal,t,450);dispTotal=t;
   $('giveR').textContent=n===1?'1 gift':n+' gifts';
 }
+$('giveOff').addEventListener('click',function(){$('chooseHead').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});
 $('gifts').addEventListener('click',function(e){
   var b=e.target.closest('.gift');if(!b)return;
   var id=b.dataset.id;sel[id]=!sel[id];b.setAttribute('aria-pressed',sel[id]?'true':'false');
