@@ -30,21 +30,45 @@
 .top .logo-w{display:none}
 .sec-hero,.sec-gifts{transition:background .4s}
 /* night hero */
-:root[data-look="nighthero"] .sec-hero{background:radial-gradient(130% 62% at 50% 44%,#1E3557 0%,#11223B 55%,#0B1627 100%);color:var(--moon);padding-bottom:6px}
-:root[data-look="nighthero"] .sec-hero .top .logo-c{display:none}
-:root[data-look="nighthero"] .sec-hero .top .logo-w{display:block}
-:root[data-look="nighthero"] .sec-hero .label{color:var(--moon-3)}
-:root[data-look="nighthero"] .hero .label{color:var(--glow)}
-:root[data-look="nighthero"] .hero h1,:root[data-look="nighthero"] .raised{color:var(--moon)}
-:root[data-look="nighthero"] .hero p,:root[data-look="nighthero"] .feed{color:var(--moon-2)}
-:root[data-look="nighthero"] .raised small{color:var(--moon-3)}
-:root[data-look="nighthero"] .of{color:var(--moon-3)}
-:root[data-look="nighthero"] .track:before,:root[data-look="nighthero"] .track .tick{background:var(--moon-line)}
-:root[data-look="nighthero"] .track .fill{background:var(--moon)}
-:root[data-look="nighthero"] .track .knob{background:var(--night);box-shadow:inset 0 0 0 1.5px var(--moon)}
-:root[data-look="nighthero"] .track .knob.mine{box-shadow:inset 0 0 0 1.5px var(--orange)}
-:root[data-look="nighthero"] .live{border-bottom:0}
-:root[data-look="nighthero"] .ill{stroke:#F2913F}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .sec-hero{background:radial-gradient(130% 62% at 50% 44%,#1E3557 0%,#11223B 55%,#0B1627 100%);color:var(--moon);padding-bottom:6px}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .sec-hero .top .logo-c{display:none}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .sec-hero .top .logo-w{display:block}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .sec-hero .label{color:var(--moon-3)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .hero .label{color:var(--glow)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .hero h1,:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .raised{color:var(--moon)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .hero p,:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .feed{color:var(--moon-2)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .raised small{color:var(--moon-3)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .of{color:var(--moon-3)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .track:before,:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .track .tick{background:var(--moon-line)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .track .fill{background:var(--moon)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .track .knob{background:var(--night);box-shadow:inset 0 0 0 1.5px var(--moon)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .track .knob.mine{box-shadow:inset 0 0 0 1.5px var(--orange)}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .live{border-bottom:0}
+:root:is([data-look="nighthero"],[data-look="nightb"],[data-look="nightc"]) .ill{stroke:#F2913F}
+
+/* Night B (clear) and Night C (brand blue): bigger, bolder, brighter text for dim rooms */
+:root[data-look="nightb"] .sec-hero{background:#0B1A2E}
+:root[data-look="nightc"] .sec-hero{background:#114A86}
+:root:is([data-look="nightb"],[data-look="nightc"]) .sec-hero{--moon:#FFFBF5;--moon-2:rgba(255,251,245,.92);--moon-3:rgba(255,251,245,.84);--moon-line:rgba(255,251,245,.32)}
+:root:is([data-look="nightb"],[data-look="nightc"]) .hero .label{font-size:13px;line-height:18px;font-weight:700;letter-spacing:.14em}
+:root[data-look="nightb"] .hero .label{color:#FFB574}
+:root[data-look="nightc"] .hero .label{color:#FFCB94}
+:root:is([data-look="nightb"],[data-look="nightc"]) .hero h1{font-weight:600;font-size:42px;line-height:44px;letter-spacing:0}
+:root:is([data-look="nightb"],[data-look="nightc"]) .hero p{font-size:18px;line-height:26px;font-weight:500;max-width:330px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .ill{stroke-width:1.5;max-width:220px}
+:root[data-look="nightc"] .ill{stroke:#FFB574}
+:root:is([data-look="nightb"],[data-look="nightc"]) .live .label{font-size:13px;line-height:18px;font-weight:700;letter-spacing:.14em;color:var(--moon-2)}
+:root:is([data-look="nightb"],[data-look="nightc"]) .live .label i{width:8px;height:8px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .raised{font-family:var(--sans);font-weight:600;font-size:34px;line-height:40px;letter-spacing:-.01em}
+:root:is([data-look="nightb"],[data-look="nightc"]) .raised small{font-size:14px;vertical-align:9px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .of{font-size:15px;color:var(--moon-2)}
+:root:is([data-look="nightb"],[data-look="nightc"]) .track{height:12px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .track:before{top:5px;height:2px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .track .tick{display:none}
+:root:is([data-look="nightb"],[data-look="nightc"]) .track .fill,:root:is([data-look="nightb"],[data-look="nightc"]) .track .mine{top:4px;height:4px;border-radius:2px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .track .knob{top:0;width:12px;height:12px;margin-left:-6px}
+:root:is([data-look="nightb"],[data-look="nightc"]) .feed{font-size:16px;font-weight:500;color:var(--moon-2)}
+:root[data-look="nightc"] .track .knob{background:#114A86}
 /* night gifts */
 :root[data-look="nightgifts"] .sec-gifts{background:linear-gradient(180deg,#0E1C30 0%,#0B1627 100%);color:var(--moon);margin:0;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
 :root[data-look="nightgifts"] .live{border-bottom:0}
@@ -257,7 +281,7 @@ button{font:inherit;color:inherit}
 
 <div class="app" id="app">
   <main id="give">
-    <div class="protobar" role="group" aria-label="Prototype look"><span>Look</span><div class="seg"><button type="button" data-look="nighthero">Night hero</button><button type="button" data-look="nightgifts">Night gifts</button><button type="button" data-look="ivory">All ivory</button></div></div>
+    <div class="protobar" role="group" aria-label="Prototype look"><span>Look</span><div class="seg"><button type="button" data-look="nighthero">Night A</button><button type="button" data-look="nightb">Night B</button><button type="button" data-look="nightc">Night C</button><button type="button" data-look="nightgifts">Night gifts</button></div></div>
     <div class="protobar" role="group" aria-label="Prototype supporting text font" style="padding-top:0"><span>Text font</span><div class="seg"><button type="button" data-soft="baskerville">Baskerville</button><button type="button" data-soft="marcellus">Marcellus</button><button type="button" data-soft="jost">Jost</button><button type="button" data-soft="lora">Lora</button></div></div>
     <div class="sec-hero">
     <header class="top"><img alt="Paws for Good" data-logo class="logo-c"><img alt="" aria-hidden="true" data-logo-w class="logo-w"></header>
@@ -401,9 +425,9 @@ function syncH(){var d=document.documentElement;try{history.replaceState(null,''
 document.querySelectorAll('button[data-look]').forEach(function(b){b.addEventListener('click',function(){setLook(b.dataset.look)})});
 function setSoft(f){document.documentElement.setAttribute('data-soft',f);document.querySelectorAll('button[data-soft]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.soft===f)});syncH()}
 document.querySelectorAll('button[data-soft]').forEach(function(b){b.addEventListener('click',function(){setSoft(b.dataset.soft)})});
-var H0=location.hash;document.documentElement.setAttribute('data-look',(H0.match(/look=(\w+)/)||[])[1]||'nighthero');
+var H0=location.hash;document.documentElement.setAttribute('data-look',(H0.match(/look=(\w+)/)||[])[1]||'nightb');
 setSoft((H0.match(/font=(\w+)/)||[])[1]||'baskerville');
-setLook((H0.match(/look=(\w+)/)||[])[1]||'nighthero');
+setLook((H0.match(/look=(\w+)/)||[])[1]||'nightb');
 
 
 /* gifts */
