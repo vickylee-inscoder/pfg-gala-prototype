@@ -281,8 +281,6 @@ button{font:inherit;color:inherit}
 
 <div class="app" id="app">
   <main id="give">
-    <div class="protobar" role="group" aria-label="Prototype look"><span>Look</span><div class="seg"><button type="button" data-look="nighthero">Night A</button><button type="button" data-look="nightb">Night B</button><button type="button" data-look="nightc">Night C</button><button type="button" data-look="nightgifts">Night gifts</button></div></div>
-    <div class="protobar" role="group" aria-label="Prototype supporting text font" style="padding-top:0"><span>Text font</span><div class="seg"><button type="button" data-soft="baskerville">Baskerville</button><button type="button" data-soft="marcellus">Marcellus</button><button type="button" data-soft="jost">Jost</button><button type="button" data-soft="lora">Lora</button></div></div>
     <div class="sec-hero">
     <header class="top"><img alt="Paws for Good" data-logo class="logo-c"><img alt="" aria-hidden="true" data-logo-w class="logo-w"></header>
 
@@ -421,13 +419,13 @@ var icon=function(id,size,col){return '<svg width="'+size+'" height="'+size+'" v
 document.querySelectorAll('[data-logo]').forEach(function(i){i.src=LOGO});
 document.querySelectorAll('[data-logo-w]').forEach(function(i){i.src=LOGOW});
 function setLook(l){document.documentElement.setAttribute('data-look',l);document.querySelectorAll('button[data-look]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.look===l)});syncH()}
-function syncH(){var d=document.documentElement;try{history.replaceState(null,'','#look='+(d.getAttribute('data-look')||'nighthero')+'&font='+(d.getAttribute('data-soft')||'baskerville'))}catch(e){}}
+function syncH(){return;var d=document.documentElement;try{history.replaceState(null,'','#look='+(d.getAttribute('data-look')||'nighthero')+'&font='+(d.getAttribute('data-soft')||'baskerville'))}catch(e){}}
 document.querySelectorAll('button[data-look]').forEach(function(b){b.addEventListener('click',function(){setLook(b.dataset.look)})});
 function setSoft(f){document.documentElement.setAttribute('data-soft',f);document.querySelectorAll('button[data-soft]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.soft===f)});syncH()}
 document.querySelectorAll('button[data-soft]').forEach(function(b){b.addEventListener('click',function(){setSoft(b.dataset.soft)})});
-var H0=location.hash;document.documentElement.setAttribute('data-look',(H0.match(/look=(\w+)/)||[])[1]||'nightb');
-setSoft((H0.match(/font=(\w+)/)||[])[1]||'baskerville');
-setLook((H0.match(/look=(\w+)/)||[])[1]||'nightb');
+var H0=location.hash;document.documentElement.setAttribute('data-look',(H0.match(/look=(\w+)/)||[])[1]||'ivory');
+setSoft((H0.match(/font=(\w+)/)||[])[1]||'jost');
+setLook((H0.match(/look=(\w+)/)||[])[1]||'ivory');
 
 
 /* gifts */
