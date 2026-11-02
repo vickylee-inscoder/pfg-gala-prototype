@@ -276,17 +276,18 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
 /* gala selection accent: ink + champagne */
 :root{--sel:#1c2733;--gold:#b48a4a}
 .gifts-band .gift[aria-pressed="true"]{background:#fff;box-shadow:0 12px 28px -16px rgba(28,39,51,.45)}
-.gift[aria-pressed="true"]::after{box-shadow:inset 0 0 0 2px var(--sel)}
-.add{color:var(--sel);box-shadow:inset 0 0 0 1px var(--sel);background:transparent}
-.gift[aria-pressed="true"] .add{background:var(--sel);color:#fff}
-.gift[aria-pressed="true"] .add .tick path{stroke:var(--gold)}
+.gift[aria-pressed="true"]::after{box-shadow:inset 0 0 0 2px var(--t)}
+.add{color:var(--t);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--t) 55%,transparent);background:transparent}
+.gift[aria-pressed="true"] .add{background:var(--t);color:#fff}
+.gift[aria-pressed="true"] .add .tick path{stroke:#fff}
 .gift .lift{color:var(--ink-soft);border-top:1px solid rgba(28,39,51,.1)}
 .lift svg{stroke:var(--gold)}
 html,body{margin:0;background:#dfe3e8}
 .app{box-shadow:0 0 0 1px rgba(28,39,51,.06),0 10px 40px rgba(28,39,51,.08)}
 .app.shopmode{background:#fff}
-#hero1{height:364px}
-#hero1 .stage{top:86px;transform:scale(.7);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
+#hero1{height:336px;-webkit-mask-image:linear-gradient(180deg,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,#000 88%,transparent 100%)}
+#hero1 .layer>.climber,#hero1 .layer>.mlabel,#hero1 .layer>.mdot,#hero1 .layer>.flag{transform:scaleY(1.1667)}
+#hero1 .stage{top:80px;transform:scale(.7,.6);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 16%,#000 84%,transparent 100%)}
 #hero1 .mlabel{font-size:18px;line-height:22px}
 #hero1 .hero-top{padding-top:16px;gap:5px}
 #hero1 .hero-top img{margin-bottom:8px}
