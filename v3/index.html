@@ -7,7 +7,7 @@
 <title>PfG Gala v3</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@300;500;600;700&family=Albert+Sans:wght@300;400;500;600;700&family=Tenor+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@300;500;600;700&display=swap">
 <style>
 /* Layout: one phone-width column — mountain hero band, frosted stats panel overlapping it, frosted gift cards, frosted sticky give bar; checkout hands off to Shopify's native checkout (simulated); thank-you is Shopify's native page with one custom extension block. Single committed pastel look. */
 :root{
@@ -355,7 +355,6 @@ h1.choose{padding-top:40px;font-size:24px;line-height:30px}
 
   <!-- GIVE -->
   <main id="give">
-    <div class="protobar" role="group" aria-label="Prototype fonts"><span>Fonts</span><div class="seg"><button type="button" data-font="intertight">Inter Tight</button><button type="button" data-font="albert">Albert Sans</button><button type="button" data-font="tenor">Tenor + Inter</button></div></div>
         <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
     <div class="gut">
       <section class="live-total" aria-label="Raised tonight">
@@ -579,7 +578,7 @@ $('hero1').insertAdjacentHTML('afterbegin','<div class="hero-top"><img alt="Paws
 document.querySelectorAll('[data-logo]').forEach(function(i){i.src=WORD});
 function setFont(f){document.documentElement.setAttribute('data-font',f);document.querySelectorAll('button[data-font]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.font===f)});try{history.replaceState(null,'','#font='+f)}catch(e){}}
 document.querySelectorAll('button[data-font]').forEach(function(b){b.addEventListener('click',function(){setFont(b.dataset.font)})});
-setFont((location.hash.match(/font=(\w+)/)||[])[1]||'intertight');
+document.documentElement.setAttribute('data-font','intertight');
 $('giveOff').addEventListener('click',function(){$('chooseHead').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});
 
 var gHtml='';
