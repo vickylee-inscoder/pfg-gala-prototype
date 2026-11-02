@@ -273,6 +273,15 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
 .mlabel.hit{color:var(--blue)}
 .climber span{box-shadow:0 0 0 2px var(--ring,var(--blue)),0 6px 14px rgba(28,39,51,.16)}
 .toast{bottom:70px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(20,92,162,.12),0 6px 16px rgba(20,92,162,.1)}
+/* gala selection accent: ink + champagne */
+:root{--sel:#1c2733;--gold:#b48a4a}
+.gifts-band .gift[aria-pressed="true"]{background:#fff;box-shadow:0 12px 28px -16px rgba(28,39,51,.45)}
+.gift[aria-pressed="true"]::after{box-shadow:inset 0 0 0 2px var(--sel)}
+.add{color:var(--sel);box-shadow:inset 0 0 0 1px var(--sel);background:transparent}
+.gift[aria-pressed="true"] .add{background:var(--sel);color:#fff}
+.gift[aria-pressed="true"] .add .tick path{stroke:var(--gold)}
+.gift .lift{color:var(--ink-soft);border-top:1px solid rgba(28,39,51,.1)}
+.lift svg{stroke:var(--gold)}
 html,body{margin:0;background:#dfe3e8}
 .app{box-shadow:0 0 0 1px rgba(28,39,51,.06),0 10px 40px rgba(28,39,51,.08)}
 .app.shopmode{background:#fff}
