@@ -7,7 +7,7 @@
 <title>PfG Gala v3</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=Albert+Sans:wght@400;500;600;700&family=Tenor+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@300;500;600;700&family=Albert+Sans:wght@300;400;500;600;700&family=Tenor+Sans&display=swap">
 <style>
 /* Layout: one phone-width column — mountain hero band, frosted stats panel overlapping it, frosted gift cards, frosted sticky give bar; checkout hands off to Shopify's native checkout (simulated); thank-you is Shopify's native page with one custom extension block. Single committed pastel look. */
 :root{
@@ -284,7 +284,13 @@ html,body{margin:0;background:#dfe3e8}
 .hero svg.scene circle{opacity:.45}
 .live-total{margin-top:-4px;position:relative;z-index:2;padding:0 0 4px;border-bottom:0}
 .live-total .lbl2 i{display:none}
-.amt-xl{font-size:36px;line-height:42px;margin-top:4px}
+.lt-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:6px}
+.pct-xl{font-family:var(--display);font-weight:300;font-size:56px;line-height:60px;letter-spacing:-.03em;color:var(--blue);font-variant-numeric:lining-nums tabular-nums;transition:color .3s}
+:root[data-font="tenor"] .pct-xl{font-weight:400}
+.pct-xl.mine{color:var(--orange)}
+.lt-cap{text-align:left;font-size:13px;line-height:17px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.lt-raised{margin-top:6px;font-size:15px;line-height:22px;color:var(--ink-soft)}
+.lt-raised b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .bar{margin-top:18px}
 h1.choose{padding-top:40px;font-size:24px;line-height:30px}
 .app:not(.shopmode){padding-bottom:0}
@@ -341,8 +347,8 @@ h1.choose{padding-top:40px;font-size:24px;line-height:30px}
     <div class="gut">
       <section class="live-total" aria-label="Raised tonight">
         <span class="lbl2"><i aria-hidden="true"></i>Raised tonight</span>
-        <span class="amt-xl"><span class="hk">HK$</span><span id="raised">0</span></span>
-        <div class="of">of HK$2,000,000 goal · <b id="pct">0%</b></div>
+        <div class="lt-row"><b id="pct" class="pct-xl">0%</b><span class="lt-cap">of tonight’s<br>HK$2M goal</span></div>
+        <div class="lt-raised"><b>HK$<span id="raised">0</span></b> raised so far</div>
         <div class="bar" role="progressbar" aria-label="Raised towards tonight's goal" aria-valuemin="0" aria-valuemax="100" id="bar"><span class="tk" style="left:25%"></span><span class="tk" style="left:50%"></span><span class="tk" style="left:75%"></span><b class="base" id="barBase"></b><b class="mine" id="barMine"></b></div>
         <span class="nudge" id="nudge"></span>
       </section>
@@ -579,7 +585,7 @@ $('gifts').innerHTML=gHtml;
 
 function renderStats(climb){
   var base=pctOf(RAISED+liveAdd),t=total(),n=count();
-  $('pct').textContent=Math.round(climb)+'%';$('pct').className=n>0?'mine':'';
+  $('pct').textContent=Math.round(climb)+'%';$('pct').className='pct-xl'+(n>0?' mine':'');
   $('barBase').style.width=Math.min(climb,base)+'%';
   $('barMine').style.left=base+'%';$('barMine').style.width=Math.max(0,climb-base)+'%';
   $('bar').setAttribute('aria-valuenow',Math.round(pctOf(RAISED+liveAdd+t)));
