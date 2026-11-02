@@ -289,6 +289,9 @@ html,body{margin:0;background:#dfe3e8}
 :root[data-font="tenor"] .pct-xl{font-weight:400}
 .pct-xl.mine{color:var(--orange)}
 .lt-cap{text-align:left;font-size:13px;line-height:17px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.nudge b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.live-total .lt-row{margin-top:2px}
+.live-total .bar{margin-top:12px}
 .lt-raised{margin-top:6px;font-size:15px;line-height:22px;color:var(--ink-soft)}
 .lt-raised b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .bar{margin-top:18px}
@@ -348,9 +351,8 @@ h1.choose{padding-top:40px;font-size:24px;line-height:30px}
       <section class="live-total" aria-label="Raised tonight">
         <span class="lbl2"><i aria-hidden="true"></i>Raised tonight</span>
         <div class="lt-row"><b id="pct" class="pct-xl">0%</b><span class="lt-cap">of tonight’s<br>HK$2M goal</span></div>
-        <div class="lt-raised"><b>HK$<span id="raised">0</span></b> raised so far</div>
         <div class="bar" role="progressbar" aria-label="Raised towards tonight's goal" aria-valuemin="0" aria-valuemax="100" id="bar"><span class="tk" style="left:25%"></span><span class="tk" style="left:50%"></span><span class="tk" style="left:75%"></span><b class="base" id="barBase"></b><b class="mine" id="barMine"></b></div>
-        <span class="nudge" id="nudge"></span>
+        <span class="nudge" id="nudge"><span id="nRaised"><b>HK$<span id="raised">0</span></b> raised so far</span><span id="nGift" hidden></span></span>
       </section>
     </div>
     <section class="gifts-band" aria-labelledby="chooseHead"><div class="gut">
@@ -591,7 +593,7 @@ function renderStats(climb){
   $('bar').setAttribute('aria-valuenow',Math.round(pctOf(RAISED+liveAdd+t)));
   var mk=[25,50,75,100],all=pctOf(RAISED+liveAdd+t),next=mk.filter(function(m){return m>base})[0]||100,passed=mk.filter(function(m){return base<m&&all>=m});
   var nd=$('nudge');nd.classList.toggle('mine',n>0);
-  nd.textContent=n===0?'HK$'+fmt(Math.max(0,GOAL*next/100-RAISED-liveAdd))+' to the next milestone':passed.length?'Your gift carries the room past '+passed[passed.length-1]+'%!':'Your gift: '+Math.round(base)+'% → '+Math.round(all)+'% up the mountain';
+  $('nRaised').hidden=n>0;$('nGift').hidden=n===0;$('nGift').textContent=n===0?'':passed.length?'Your gift carries the room past '+passed[passed.length-1]+'%!':'Your gift: '+Math.round(base)+'% → '+Math.round(all)+'% up the mountain';
 }
 function tweenNum(el,from,to,ms){var st=performance.now();if(reduce)ms=1;(function f(now){var p=Math.min(1,(now-st)/ms),e=1-Math.pow(1-p,3);el.textContent=fmt(Math.round((from+(to-from)*e)/1000)*1000);if(p<1)requestAnimationFrame(f)})(st)}
 function updateDock(){
