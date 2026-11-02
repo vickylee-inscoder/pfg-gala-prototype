@@ -251,6 +251,54 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
 .sh-head img{height:auto!important;width:150px!important}
 .sh-img{height:auto}
 
+
+/* ===== v3.1 polish: one continuous composition ===== */
+:root,:root[data-tone="daylight"]{--hl0:#efe4d9;--hl1:#f9f0e8;--h20:#f6ece3}
+.app{background:var(--mist)}
+.protobar{background:transparent;color:var(--ink-soft);padding:8px 16px;border-bottom:1px solid rgba(28,39,51,.06);font-size:11px;position:relative;z-index:6}
+.protobar span{opacity:1;letter-spacing:.12em;text-transform:uppercase;font-size:10px}
+.protobar .seg{background:rgba(28,39,51,.05);border-radius:4px;padding:2px}
+.protobar button{color:var(--ink-soft);border-radius:3px;font-size:11px;padding:5px 9px}
+.protobar button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.hero{height:404px;background:linear-gradient(180deg,#d6e5f3 0%,#e4edf6 30%,#f1eeee 62%,var(--mist) 100%);-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 100%);mask-image:linear-gradient(180deg,#000 82%,transparent 100%)}
+.hero .stage{top:92px}
+.hero svg.scene .skyrect{display:none}
+.hero .cloud,.hero .flake{display:none}
+.hero-top{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px 16px 0;text-align:center;animation:fade .8s .1s both}
+.hero-top img{width:150px;height:auto;display:block;margin-bottom:12px}
+.hero-top .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;line-height:16px;font-weight:700;letter-spacing:.22em;color:var(--blue)}
+.hero-top .eyebrow i{width:7px;height:7px;border-radius:999px;background:var(--orange);animation:pulse 1.8s infinite}
+.hero-top h2{margin:0;font-family:var(--display);font-weight:var(--hw);font-size:27px;line-height:32px;letter-spacing:var(--hls);color:var(--ink)}
+.mlabel{padding:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;font-size:16px;line-height:20px;font-weight:600;color:var(--ink-soft);text-shadow:0 0 6px #fff,0 0 2px #fff}
+.mlabel.hit{color:var(--blue)}
+.climber span{box-shadow:0 0 0 2px var(--ring,var(--blue)),0 6px 14px rgba(28,39,51,.16)}
+.toast{bottom:70px;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(20,92,162,.12),0 6px 16px rgba(20,92,162,.1)}
+html,body{margin:0}
+.hero svg.scene circle{opacity:.45}
+.live-total{margin-top:-4px;position:relative;z-index:2;padding:0 0 4px;border-bottom:0}
+.live-total .lbl2 i{display:none}
+.amt-xl{font-size:36px;line-height:42px;margin-top:4px}
+.bar{margin-top:18px}
+h1.choose{padding-top:40px;font-size:24px;line-height:30px}
+h1.choose::before{content:"";display:block;width:32px;height:1px;margin:0 auto 22px;background:var(--orange)}
+.choose-sub{margin-bottom:20px}
+.gifts{gap:12px}
+.gift{border-radius:4px;box-shadow:inset 0 0 0 1px rgba(28,39,51,.09),0 1px 2px rgba(28,39,51,.04)}
+.gift[aria-pressed="true"]{box-shadow:0 10px 24px -16px rgba(237,128,35,.6);transform:none}
+.ghead{padding:11px 16px;color:var(--t);background:color-mix(in srgb,var(--t) 8%,#fff)}
+.ghead::after{left:0;right:0;background:color-mix(in srgb,var(--t) 16%,transparent)}
+.gift[aria-pressed="true"] .ghead{background:color-mix(in srgb,var(--t) 11%,#fff)}
+.gico{width:28px;height:28px;background:transparent;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--t) 35%,transparent)}
+.gift[aria-pressed="true"] .gico{transform:none}
+.tag{background:var(--t);color:#fff;border-radius:2px}
+.gbody{padding:16px 16px 16px}
+.lift{border-top-color:rgba(237,128,35,.22)}
+.dock{background:color-mix(in srgb,var(--mist) 94%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(28,39,51,.08)}
+.give{box-shadow:none}
+.sh-img{background:linear-gradient(180deg,#d6e5f3 0%,#e4edf6 30%,#f1eeee 62%,#fff5ee 100%)}
+.sh-img .stage{top:-14px}
+.sh-img .hero{height:340px;-webkit-mask-image:none;mask-image:none;background:none}
+
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 @keyframes drift{0%{transform:translateX(-30px)}100%{transform:translateX(30px)}}
@@ -280,8 +328,7 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
   <!-- GIVE -->
   <main id="give">
     <div class="protobar" role="group" aria-label="Prototype fonts"><span>Fonts</span><div class="seg"><button type="button" data-font="intertight">Inter Tight</button><button type="button" data-font="albert">Albert Sans</button><button type="button" data-font="tenor">Tenor + Inter</button></div></div>
-    <header class="top"><img alt="Paws for Good" data-logo></header>
-    <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
+        <section class="hero" id="hero1" aria-label="Tonight's climb"></section>
     <div class="gut">
       <section class="live-total" aria-label="Raised tonight">
         <span class="lbl2"><i aria-hidden="true"></i>Raised tonight</span>
@@ -420,7 +467,7 @@ function makeScene(host,uid){
   '<filter id="'+g('soft')+'" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.1"/></filter>'+
   '<filter id="'+g('haze')+'" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="1.4"/></filter>'+
   '<filter id="'+g('gr')+'" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.7" numOctaves="2" seed="7" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .55"/></feComponentTransfer></filter></defs>'+
-  '<rect x="-60" width="510" height="440" fill="url(#'+g('sky')+')"/>'+
+  '<rect class="skyrect" x="-60" width="510" height="440" fill="url(#'+g('sky')+')"/>'+
   '<circle cx="330" cy="70" r="90" fill="url(#'+g('sun')+')"/>'+
   '<path d="M-60 300C0 268 44 260 86 270C128 280 156 248 204 250C252 252 276 282 324 268C372 254 412 262 450 276L450 440L-60 440Z" fill="url(#'+g('far')+')" filter="url(#'+g('haze')+')"/>'+
   '<g>'+
@@ -499,7 +546,7 @@ setTone((h0.match(/tone=(\w+)/)||[])[1]||'daylight');setCards(c0);setNum(n0);
 
 /* ---------- give screen ---------- */
 var s1=makeScene($('hero1'),'a');
-$('hero1').insertAdjacentHTML('beforeend','<div class="topbar"><span></span><span class="pill-glass live"><i></i>Live</span></div><div class="hero-copy"><span class="eyebrow">Charity Gala · 12 Nov</span><h2>Let’s reach<br>the summit</h2></div>');
+$('hero1').insertAdjacentHTML('afterbegin','<div class="hero-top"><img alt="Paws for Good" data-logo><span class="eyebrow"><i aria-hidden="true"></i>Live · Charity Gala · 12 Nov</span><h2>Let’s reach the summit</h2></div>');
 document.querySelectorAll('[data-logo]').forEach(function(i){i.src=WORD});
 function setFont(f){document.documentElement.setAttribute('data-font',f);document.querySelectorAll('button[data-font]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.font===f)});try{history.replaceState(null,'','#font='+f)}catch(e){}}
 document.querySelectorAll('button[data-font]').forEach(function(b){b.addEventListener('click',function(){setFont(b.dataset.font)})});
@@ -510,7 +557,7 @@ var gHtml='';
 GIFTS.forEach(function(g,i){
   var pc=Math.round(g.amt/GOAL*1000)/10;
   gHtml+='<div class="gift-wrap" style="animation-delay:'+(450+i*90)+'ms"><button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+')">'+
-  '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+(g.top?'<span class="tag">Greatest impact</span>':'')+'</span>'+
+  '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+(g.top?'<span class="tag">Greatest impact</span>':'')+'</span>'+
   '<span class="gbody"><span class="ginfo"><span class="amt"><span class="cur">HK$</span>'+fmt(g.amt)+'</span>'+
   '<span class="impact">'+g.impact+'</span></span>'+
   '<span class="add" aria-hidden="true"><span class="dot"><svg class="plus" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke-width="2.6" stroke-linecap="round"/></svg><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">Add</span></span>'+
