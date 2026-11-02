@@ -287,7 +287,13 @@ html,body{margin:0;background:#dfe3e8}
 .amt-xl{font-size:36px;line-height:42px;margin-top:4px}
 .bar{margin-top:18px}
 h1.choose{padding-top:40px;font-size:24px;line-height:30px}
-h1.choose::before{content:"";display:block;width:32px;height:1px;margin:0 auto 22px;background:var(--orange)}
+.app:not(.shopmode){padding-bottom:0}
+.gifts-band{margin-top:28px;background:#f3e9e0;box-shadow:inset 0 1px 0 rgba(122,74,28,.12);padding-bottom:calc(128px + env(safe-area-inset-bottom,0px))}
+.gifts-band h1.choose{padding-top:30px}
+.gifts-band .choose-sub{color:var(--muted)}
+.gifts-band .gift{box-shadow:0 1px 2px rgba(122,74,28,.08),0 8px 20px -14px rgba(122,74,28,.35)}
+.gifts-band .fine{border-top-color:rgba(122,74,28,.15)}
+#dock.dock{background:rgba(243,233,224,.94)}
 .choose-sub{margin-bottom:20px}
 .gifts{gap:12px}
 .gift{border-radius:4px;box-shadow:inset 0 0 0 1px rgba(28,39,51,.09),0 1px 2px rgba(28,39,51,.04)}
@@ -340,6 +346,8 @@ h1.choose::before{content:"";display:block;width:32px;height:1px;margin:0 auto 2
         <div class="bar" role="progressbar" aria-label="Raised towards tonight's goal" aria-valuemin="0" aria-valuemax="100" id="bar"><span class="tk" style="left:25%"></span><span class="tk" style="left:50%"></span><span class="tk" style="left:75%"></span><b class="base" id="barBase"></b><b class="mine" id="barMine"></b></div>
         <span class="nudge" id="nudge"></span>
       </section>
+    </div>
+    <section class="gifts-band" aria-labelledby="chooseHead"><div class="gut">
       <h1 class="choose" id="chooseHead">Choose your gift</h1>
       <p class="choose-sub">Select one or more. Tap again to remove.</p>
       <div style="position:relative">
@@ -349,7 +357,7 @@ h1.choose::before{content:"";display:block;width:32px;height:1px;margin:0 auto 2
         <div class="gifts" role="group" aria-label="Gala gifts" id="gifts"></div>
       </div>
       <p class="fine">Registered charity · IRD File No. 91/19627<br>Tax-deductible receipt by email</p>
-    </div>
+    </div></section>
   </main>
 
   <!-- SHOPIFY NATIVE CHECKOUT (simulated) -->
