@@ -296,6 +296,14 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
 .live-total.summit .lbl2{color:#8a6a1f}
 .live-total.summit .bar .base{background:var(--gold-b)}
 .pct-xl .sm{font-size:.42em;letter-spacing:.02em;vertical-align:.95em;margin-right:.08em;font-weight:500}
+.give{height:62px}
+.give .l{display:flex;flex-direction:column;align-items:flex-start;gap:2px;letter-spacing:0;text-transform:none}
+.give .l small{font-size:11px;line-height:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.give .l b{margin:0;font-size:19px;line-height:22px;letter-spacing:.01em}
+.give{padding:0 18px}
+.give .l small,.give .l b,.give .r{white-space:nowrap}
+.give .r{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;letter-spacing:.01em;text-transform:none;opacity:1}
+.dock-note{display:flex;align-items:center;justify-content:center;gap:6px;margin:8px 0 0;font-size:12px;line-height:16px;color:var(--ink-soft)}
 html,body{margin:0;background:#dfe3e8}
 .app{box-shadow:0 0 0 1px rgba(28,39,51,.06),0 10px 40px rgba(28,39,51,.08)}
 .app.shopmode{background:#fff}
@@ -462,7 +470,8 @@ h1.choose{padding-top:40px;font-size:24px;line-height:30px}
 
 <div class="dock" id="dock">
   <button type="button" class="give-off" id="giveOff">Choose your gift<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M3 8l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-  <button class="give" id="giveBtn" type="button" hidden><span class="l">Give<b>HK$<span id="total">0</span></b></span><span class="r" id="giveR"></span></button>
+  <button class="give" id="giveBtn" type="button" hidden><span class="l"><small id="giveR"></small><b>HK$<span id="total">0</span></b></span><span class="r">Continue to payment<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+  <p class="dock-note" id="dockNote" hidden><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Next: secure checkout · you’ll review before paying</p>
 </div>
 
 <div class="sh-wait" id="wait" hidden role="status" aria-live="polite"><div class="spin" aria-hidden="true"></div><span id="waitMsg">Taking you to secure checkout…</span><small id="waitSub">Powered by Shopify</small></div>
@@ -638,7 +647,7 @@ function updateDock(){
   $('giveOff').hidden=n>0;$('giveBtn').hidden=n===0;
   if(n>0&&wasOff){$('giveBtn').classList.remove('in');void $('giveBtn').offsetWidth;$('giveBtn').classList.add('in')}
   tweenNum($('total'),dispTotal,t,450);dispTotal=t;
-  $('giveR').textContent=(n===1?'1 gift':n+' gifts')+' · '+(isSummit()?'+HK$'+K(RAISED+liveAdd+t-GOAL):'→ '+Math.round(pctOf(RAISED+liveAdd+t))+'%');
+  $('giveR').textContent=n===1?'1 gift':n+' gifts';$('dockNote').hidden=n===0;
 }
 $('gifts').addEventListener('click',function(e){
   var b=e.target.closest('.gift');if(!b)return;
