@@ -306,8 +306,9 @@ h1.choose{margin:0;padding:24px 0 4px;font-family:var(--display);font-weight:var
 .dock-note{display:flex;align-items:center;justify-content:center;gap:6px;margin:8px 0 0;font-size:12px;line-height:16px;color:var(--ink-soft)}
 /* final content: long tier names + longer impact copy */
 .ghead{flex-wrap:wrap;row-gap:6px;padding:12px 16px}
-.ghead .tag{order:3;margin-left:38px}
-.ghead:has(.tag) .gname{flex-basis:calc(100% - 38px)}
+.gift-wrap{position:relative}
+.top-tag{position:absolute;z-index:3;top:-10px;right:14px;margin:0;padding:4px 9px 3px;pointer-events:none;box-shadow:0 2px 6px rgba(28,39,51,.18)}
+.gift-wrap.has-tag{margin-top:6px}
 .gname{flex:1 1 0;min-width:0;font-size:15px;line-height:20px;font-weight:600;letter-spacing:.01em;text-transform:none}
 .gbody .impact{grid-column:1 / -1;margin-top:8px;font-size:15px;line-height:22px}
 .gbody .ginfo .amt{font-size:38px}
@@ -615,8 +616,8 @@ $('giveOff').addEventListener('click',function(){$('chooseHead').scrollIntoView(
 var gHtml='';
 GIFTS.forEach(function(g,i){
   var pc=Math.round(g.amt/GOAL*1000)/10;
-  gHtml+='<div class="gift-wrap" style="animation-delay:'+(450+i*90)+'ms"><button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+')">'+
-  '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+(g.top?'<span class="tag">Greatest impact</span>':'')+'</span>'+
+  gHtml+='<div class="gift-wrap'+(g.top?' has-tag':'')+'" style="animation-delay:'+(450+i*90)+'ms">'+(g.top?'<span class="tag top-tag" aria-hidden="true">Greatest impact</span>':'')+'<button class="gift" type="button" aria-pressed="false" data-id="'+g.id+'" style="--t:var(--c-'+g.id+')">'+
+  '<span class="ghead"><span class="gico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.icon+'</svg></span><span class="gname">'+g.name+'</span>'+'</span>'+
   '<span class="gbody"><span class="ginfo"><span class="amt"><span class="cur">HK$</span>'+fmt(g.amt)+'</span>'+
   '</span>'+
   '<span class="add" aria-hidden="true"><span class="dot"><svg class="plus" width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke-width="2.6" stroke-linecap="round"/></svg><svg class="tick" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">Add</span></span>'+
